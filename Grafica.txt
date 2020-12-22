@@ -1,0 +1,5 @@
+glu32.lib 
+glut32.lib
+opengl32.lib
+glaux.lib 
+legacy_stdio_definitions.lib
