@@ -14,18 +14,19 @@
             <li class="nav-item ${pageContext.request.requestURI eq '/JobsRecruting/about.jsp' ? ' active ' : ''}">
                 <a class="nav-link" href="${pageContext.request.contextPath}/about.jsp">About</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#">New account</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+       
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Language</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">English</a>
+                    <a class="dropdown-item" href="#">French</a>
+                    <a class="dropdown-item" href="#">Romanian</a>
+                    <a class="dropdown-item" href="#">Germany</a>
+                    <a class="dropdown-item" href="#">Spanish</a>
                 </div>
             </li>
         </ul>
