@@ -16,7 +16,7 @@
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="#">New account</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/Account">New account</a>
             </li>
        
             <li class="nav-item dropdown">
