@@ -3,13 +3,13 @@
   <!-- Define Persistence Unit -->
   <persistence-unit name="my_persistence_unit" transaction-type="JTA">
     <jta-data-source>jdbc/sample</jta-data-source>
-    <class>com.jobs.jobs.entity.User</class>
-    <class>com.jobs.jobs.entity.Candidate</class>
-    <class>com.jobs.jobs.entity.CandidateComments</class>
-    <class>com.jobs.jobs.entity.Position</class>
-    <class>com.jobs.jobs.entity.PositionDetails</class>
-    <class>com.jobs.jobs.entity.PositionComments</class>
-    <class>com.jobs.jobs.entity.CV</class>
+    <class>com.project.jobs.entity.User</class>
+    <class>com.project.jobs.entity.Position</class>
+    <class>com.project.jobs.entity.PositionDetails</class>
+    <class>com.project.jobs.entity.CV</class>
+    <class>com.project.jobs.entity.CandidateComments</class>
+    <class>com.project.jobs.entity.Candidate</class>
+    <class>com.project.jobs.entity.PositionComments</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Jobs"/>

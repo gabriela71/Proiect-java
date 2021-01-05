@@ -3,38 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jobs.jobs.entity;
+package com.project.jobs.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author stefi
  */
 @Entity
-public class CV implements Serializable {
+@Table(name = "CANDIDATECOMMENTS")
+public class CandidateComments implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
+    
     //CAMPURI
-    private String filename;
-    private String fileType;
-    private byte[] fileContent;
+    private String comentariu;
     
-    @OneToOne
-    @JoinColumn(name="CANDIDATE_KEY")
-    private Candidate candidate;    //legatura cu entitatea candidat
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CANDIDATE_KEY")
+    private Candidate candidate;
     
-    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_KEY")
+    private User user;
+
     
     //ID
     public Integer getId() {
@@ -45,34 +49,16 @@ public class CV implements Serializable {
         this.id = id;
     }
 
-    //NUMELE FISIERULUI
-    public String getFilename() {
-        return filename;
+    //CONTINUTUL COMENTARIULUI
+    public String getComentariu() {
+        return comentariu;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setComentariu(String comentariu) {
+        this.comentariu = comentariu;
     }
 
-    //TIPUL FISIERULUI
-    public String getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
-    }
-
-    //CONTINUTUL FISIERULUI
-    public byte[] getFileContent() {
-        return fileContent;
-    }
-
-    public void setFileContent(byte[] fileContent) {
-        this.fileContent = fileContent;
-    }
-
-    //CANDIDATUL
+    //CANDIDATUL CARUIA I SE PUNE COMENTARIUL
     public Candidate getCandidate() {
         return candidate;
     }
@@ -81,8 +67,17 @@ public class CV implements Serializable {
         this.candidate = candidate;
     }
 
-    
+    //USERS CARE AU LASAT COMENTARIU
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -93,10 +88,10 @@ public class CV implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CV)) {
+        if (!(object instanceof CandidateComments)) {
             return false;
         }
-        CV other = (CV) object;
+        CandidateComments other = (CandidateComments) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -105,7 +100,7 @@ public class CV implements Serializable {
 
     @Override
     public String toString() {
-        return "com.jobs.jobs.entity.CV[ id=" + id + " ]";
+        return "com.jobs.jobs.entity.CandidateComments[ id=" + id + " ]";
     }
     
 }

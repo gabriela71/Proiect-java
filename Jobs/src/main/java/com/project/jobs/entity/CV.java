@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jobs.jobs.entity;
+package com.project.jobs.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -12,29 +12,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  *
  * @author stefi
  */
 @Entity
-@Table(name = "POSITIONDETAILS")
-public class PositionDetails implements Serializable {
+public class CV implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+
     //CAMPURI
-    private boolean stare;
-    private boolean asteptare;
+    private String filename;
+    private String fileType;
+    private byte[] fileContent;
     
     @OneToOne
-    @JoinColumn(name="POSITION_KEY")
-    private Position position;
-
+    @JoinColumn(name="CANDIDATE_KEY")
+    private Candidate candidate;    //legatura cu entitatea candidat
+    
     
     
     //ID
@@ -46,35 +45,44 @@ public class PositionDetails implements Serializable {
         this.id = id;
     }
 
-    //STARE (ACTIV/INACTIV)
-    public boolean getStare() {
-        return stare;
+    //NUMELE FISIERULUI
+    public String getFilename() {
+        return filename;
     }
 
-    public void setStare(boolean stare) {
-        this.stare = stare;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
-    //STARE= SE ASTEAPTA CONFIRMAREA SAU NU
-    public boolean getAsteptare() {
-        return asteptare;
+    //TIPUL FISIERULUI
+    public String getFileType() {
+        return fileType;
     }
 
-    public void setAsteptare(boolean asteptare) {
-        this.asteptare = asteptare;
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 
-    //POZITIA
-    public Position getPosition() {
-        return position;
+    //CONTINUTUL FISIERULUI
+    public byte[] getFileContent() {
+        return fileContent;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setFileContent(byte[] fileContent) {
+        this.fileContent = fileContent;
+    }
+
+    //CANDIDATUL
+    public Candidate getCandidate() {
+        return candidate;
+    }
+
+    public void setCandidate(Candidate candidate) {
+        this.candidate = candidate;
     }
 
     
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -85,10 +93,10 @@ public class PositionDetails implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PositionDetails)) {
+        if (!(object instanceof CV)) {
             return false;
         }
-        PositionDetails other = (PositionDetails) object;
+        CV other = (CV) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -97,7 +105,7 @@ public class PositionDetails implements Serializable {
 
     @Override
     public String toString() {
-        return "com.jobs.jobs.entity.PositionDetails[ id=" + id + " ]";
+        return "com.jobs.jobs.entity.CV[ id=" + id + " ]";
     }
     
 }

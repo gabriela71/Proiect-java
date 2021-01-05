@@ -1,4 +1,4 @@
-package com.jobs.jobs.resources;
+package com.project.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

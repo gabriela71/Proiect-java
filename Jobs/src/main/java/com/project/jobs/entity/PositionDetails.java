@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jobs.jobs.entity;
+package com.project.jobs.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,8 +19,8 @@ import javax.persistence.Table;
  * @author stefi
  */
 @Entity
-@Table(name = "CANDIDATECOMMENTS")
-public class CandidateComments implements Serializable {
+@Table(name = "POSITIONDETAILS")
+public class PositionDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -29,16 +28,14 @@ public class CandidateComments implements Serializable {
     private Integer id;
     
     //CAMPURI
-    private String comentariu;
+    private boolean stare;
+    private boolean asteptare;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CANDIDATE_KEY")
-    private Candidate candidate;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_KEY")
-    private User user;
+    @OneToOne
+    @JoinColumn(name="POSITION_KEY")
+    private Position position;
 
+    
     
     //ID
     public Integer getId() {
@@ -49,31 +46,31 @@ public class CandidateComments implements Serializable {
         this.id = id;
     }
 
-    //CONTINUTUL COMENTARIULUI
-    public String getComentariu() {
-        return comentariu;
+    //STARE (ACTIV/INACTIV)
+    public boolean getStare() {
+        return stare;
     }
 
-    public void setComentariu(String comentariu) {
-        this.comentariu = comentariu;
+    public void setStare(boolean stare) {
+        this.stare = stare;
     }
 
-    //CANDIDATUL CARUIA I SE PUNE COMENTARIUL
-    public Candidate getCandidate() {
-        return candidate;
+    //STARE= SE ASTEAPTA CONFIRMAREA SAU NU
+    public boolean getAsteptare() {
+        return asteptare;
     }
 
-    public void setCandidate(Candidate candidate) {
-        this.candidate = candidate;
+    public void setAsteptare(boolean asteptare) {
+        this.asteptare = asteptare;
     }
 
-    //USERS CARE AU LASAT COMENTARIU
-    public User getUser() {
-        return user;
+    //POZITIA
+    public Position getPosition() {
+        return position;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     
@@ -88,10 +85,10 @@ public class CandidateComments implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CandidateComments)) {
+        if (!(object instanceof PositionDetails)) {
             return false;
         }
-        CandidateComments other = (CandidateComments) object;
+        PositionDetails other = (PositionDetails) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -100,7 +97,7 @@ public class CandidateComments implements Serializable {
 
     @Override
     public String toString() {
-        return "com.jobs.jobs.entity.CandidateComments[ id=" + id + " ]";
+        return "com.jobs.jobs.entity.PositionDetails[ id=" + id + " ]";
     }
     
 }
