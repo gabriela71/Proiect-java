@@ -22,11 +22,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Language</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">English</a>
-                    <a class="dropdown-item" href="#">French</a>
-                    <a class="dropdown-item" href="#">Romanian</a>
-                    <a class="dropdown-item" href="#">Germany</a>
-                    <a class="dropdown-item" href="#">Spanish</a>
+                    <a class="dropdown-item" href="#"><i class="uk flag"></i></a>
+                    <a class="dropdown-item" href="#"><i class="romania flag"></i></a>
+                    <a class="dropdown-item" href="#"><i class="germany flag"></i></a>
+             
                 </div>
             </li>
         </ul>
