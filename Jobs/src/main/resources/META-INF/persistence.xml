@@ -10,6 +10,7 @@
     <class>com.project.jobs.entity.CandidateComments</class>
     <class>com.project.jobs.entity.Candidate</class>
     <class>com.project.jobs.entity.PositionComments</class>
+    <class>com.project.jobs.entity.Aplicanti</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Jobs"/>

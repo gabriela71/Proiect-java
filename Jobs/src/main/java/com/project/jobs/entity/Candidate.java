@@ -33,6 +33,8 @@ public class Candidate implements Serializable {
     private Integer id;
     
     //CAMPURI
+    private String username;
+    private String password;
     private String nume;
     private String prenume;
     private String nrTelefon;
@@ -40,7 +42,8 @@ public class Candidate implements Serializable {
     private String email;
     private String address;
     private Date dataInterviu;
-    
+    private String pozitiaAplicata;
+
     @OneToOne(mappedBy = "candidate", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private CV cv;
     
@@ -57,6 +60,24 @@ public class Candidate implements Serializable {
         this.id = id;
     }
 
+    //USERNAME
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    //PAROLA
+    public String getPassword() {
+        return password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     //NUME
     public String getNume() {
         return nume;
@@ -118,6 +139,15 @@ public class Candidate implements Serializable {
 
     public void setDataInterviu(Date dataInterviu) {
         this.dataInterviu = dataInterviu;
+    }
+    
+    //POZITIA LA CARE A APLICAT
+    public String getPozitiaAplicata() {
+        return pozitiaAplicata;
+    }
+
+    public void setPozitiaAplicata(String pozitiaAplicata) {
+        this.pozitiaAplicata = pozitiaAplicata;
     }
 
     //CV
