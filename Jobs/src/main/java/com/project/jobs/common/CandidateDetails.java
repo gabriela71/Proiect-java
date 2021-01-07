@@ -5,6 +5,8 @@
  */
 package com.project.jobs.common;
 
+import java.util.Date;
+
 /**
  *
  * @author Alex
@@ -12,25 +14,33 @@ package com.project.jobs.common;
 public class CandidateDetails {
     
     private Integer id;
+    private String username;
     private String nume;
     private String prenume;
     private String nrTelefon;
     private String nrMobil;
     private String email;
     private String address;
+    private String pozitiaAplicata;
 
-    public CandidateDetails(Integer id, String nume, String prenume, String nrTelefon, String nrMobil, String email, String address) {
+    public CandidateDetails(Integer id, String username, String nume, String prenume, String nrTelefon, String nrMobil, String email, String address, String pozitiaAplicata) {
         this.id = id;
+        this.username = username;
         this.nume = nume;
         this.prenume = prenume;
         this.nrTelefon = nrTelefon;
         this.nrMobil = nrMobil;
         this.email = email;
         this.address = address;
+        this.pozitiaAplicata = pozitiaAplicata;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getNume() {
@@ -56,6 +66,13 @@ public class CandidateDetails {
     public String getAddress() {
         return address;
     }
+
+
+    public String getPozitiaAplicata() {
+        return pozitiaAplicata;
+    }
+    
+    
     
     
     

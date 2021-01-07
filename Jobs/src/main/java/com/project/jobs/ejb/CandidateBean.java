@@ -5,11 +5,8 @@
  */
 package com.project.jobs.ejb;
 
-import com.project.jobs.common.CvDetails;
 import com.project.jobs.common.CandidateDetails;
-import com.project.jobs.entity.CV;
 import com.project.jobs.entity.Candidate;
-import com.project.jobs.entity.User;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -30,11 +27,10 @@ public class CandidateBean {
     @PersistenceContext
     private EntityManager em;
     
-    public CandidateDetails getLoggedUser(String emailLogin) {
+    public CandidateDetails getLoggedUser(String usernameLogin) {
         LOG.info("getAllUsers");
-        try {
-            //List<Candidate> candidate = (List<Candidate>) em.createQuery("SELECT u FROM Candidate u WHERE u.email =:emailLogin").getResultList();
-            TypedQuery<Candidate> typedQuery = em.createQuery("SELECT u FROM Candidate u WHERE u.email = :emailLogin",Candidate.class).setParameter("emailLogin", emailLogin);
+        try {         
+            TypedQuery<Candidate> typedQuery = em.createQuery("SELECT u FROM Candidate u WHERE u.username = :usernameLogin",Candidate.class).setParameter("usernameLogin", usernameLogin);
             List<Candidate> candidate=typedQuery.getResultList();
             return copyUserToDetails(candidate.get(0));
         } catch (Exception ex) {
@@ -43,8 +39,8 @@ public class CandidateBean {
     }
     
     private CandidateDetails copyUserToDetails(Candidate user){
-        CandidateDetails candidateDetails=new CandidateDetails(user.getId(),
-        user.getNume(),user.getPrenume(),user.getNrTelefon(),user.getNrMobil(),user.getEmail(),user.getAddress());
+        CandidateDetails candidateDetails=new CandidateDetails(user.getId(),user.getUsername(),
+        user.getNume(),user.getPrenume(),user.getNrTelefon(),user.getNrMobil(),user.getEmail(),user.getAddress(),user.getPozitiaAplicata());
         
         return candidateDetails;
     }
