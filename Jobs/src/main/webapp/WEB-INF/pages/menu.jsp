@@ -14,6 +14,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/Register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/Jobs">Jobs</a>
             </li>  
 
             <li class="nav-item dropdown">
