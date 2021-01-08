@@ -6,6 +6,10 @@
 package com.project.jobs.ejb;
 
 import com.project.jobs.common.CandidateDetails;
+<<<<<<< HEAD
+=======
+import com.project.jobs.common.CvDetails;
+>>>>>>> 3dc73ae18799ce43803bd58623829bff0e07f46f
 import com.project.jobs.entity.CV;
 import com.project.jobs.entity.Candidate;
 import com.project.jobs.servlet.Register;
@@ -79,14 +83,14 @@ public class CandidateBean {
     }
     
     
-//    public CvDetails findCvByUserUsername(String userUsername){
-//        TypedQuery<CV> typedQuery = em.createQuery("SELECT p FROM CV p where p.Candidate.nume = :username",CV.class).setParameter("username", userUsername);
-//        List<CV> cvs=typedQuery.getResultList();
-//        if(cvs.isEmpty()){
-//            return null;
-//        }
-//        CV cv=cvs.get(0);
-//        return new CvDetails(cv.getId(), cv.getFilename(),cv.getFileType(),cv.getFileContent());
-//    }
+    public CvDetails findCvByCandidateUsername(String candidateUsername){
+        TypedQuery<CV> typedQuery = em.createQuery("SELECT p FROM CV p where p.candidate.username = :username",CV.class).setParameter("username", candidateUsername);
+        List<CV> cvs=typedQuery.getResultList();
+        if(cvs.isEmpty()){
+            return null;
+        }
+        CV cv=cvs.get(0);
+        return new CvDetails(cv.getId(), cv.getFilename(),cv.getFileType(),cv.getFileContent());
+    }
    
 }
