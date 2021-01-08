@@ -6,9 +6,20 @@
 package com.project.sendemail;
 
 import com.project.jobs.ejb.CandidateBean;
+import com.project.jobs.ejb.EmailBean;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Properties;
 import javax.inject.Inject;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +35,9 @@ public class Jobs extends HttpServlet {
 
     @Inject
     CandidateBean candidateBean;
+    
+    @Inject
+    EmailBean emailBean;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -37,7 +51,7 @@ public class Jobs extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+
         request.getRequestDispatcher("/WEB-INF/pages/jobs.jsp").forward(request, response);
     }
 
@@ -53,12 +67,12 @@ public class Jobs extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //        CandidateDetails loggedCandidate=candidateBean.getLoggedUser("test.gmail");
-//        
+//        //CvDetails cv = candidateBean.findCvByCandidateUsername("test");
 //        // Recipient's email ID needs to be mentioned.
-//        String to = loggedCandidate.getEmail();
+//        String to = "jobsrecruiting.project@gmail.com"; //loggedCandidate.getEmail();
 //
 //        // Sender's email ID needs to be mentioned
-//        String from = "jobsrecruiting.project";
+//        String from = "jobsrecruiting.project@gmail.com";
 //
 //        // Assuming you are sending email from through gmails smtp
 //        String host = "smtp.gmail.com";
@@ -66,7 +80,7 @@ public class Jobs extends HttpServlet {
 //        // Get system properties
 //        Properties properties = System.getProperties();
 //
-//        // Setup mail server
+//        // Setup mail server     
 //        properties.put("mail.smtp.host", host);
 //        properties.put("mail.smtp.port", "465");
 //        properties.put("mail.smtp.ssl.enable", "true");
@@ -77,13 +91,13 @@ public class Jobs extends HttpServlet {
 //
 //            protected PasswordAuthentication getPasswordAuthentication() {
 //
-//                return new PasswordAuthentication("jobsrecruiting.project", "recruitingjobs157A");
+//                return new PasswordAuthentication("jobsrecruiting.project@gmail.com", "recruitingjobs157A");
 //
 //            }
 //
 //        });
-//        
-//         try {
+//        session.setDebug(true); //debug
+//        try {
 //            // Create a default MimeMessage object.
 //            MimeMessage message = new MimeMessage(session);
 //
@@ -97,14 +111,42 @@ public class Jobs extends HttpServlet {
 //            message.setSubject("Aplicare pozitie");
 //
 //            // Now set the actual message
-//            message.setText(loggedCandidate.getNume()+" "+loggedCandidate.getPrenume()+" a aplicat pentru o functie");
-//            
+//            //message.setText(loggedCandidate.getNume()+" "+loggedCandidate.getPrenume()+" a aplicat pentru o functie");
+//            Multipart multipart = new MimeMultipart();
+//            //MimeBodyPart attachmentPart = new MimeBodyPart();
+//            MimeBodyPart textPart = new MimeBodyPart();
+//
+////            byte[] bytes = cv.getFileContent();
+////
+////            try {
+////                File f = new File(cv.getFilename() + ".pdf"); //eroare
+////                try (FileOutputStream fos = new FileOutputStream(f)) {
+////                    fos.write(bytes);
+////                    fos.flush();
+////                } catch (IOException i) {
+////                    //eroare
+////                }
+////                attachmentPart.attachFile(f);
+////            } catch (IOException e) {
+////                //eroare
+////            }
+//
+//
+//            textPart.setText("Text de proba");
+//
+//            //multipart.addBodyPart(attachmentPart);
+//            multipart.addBodyPart(textPart);
+//
+//            message.setContent(multipart);
+//
 //            Transport.send(message);
-//            
+//
 //        } catch (MessagingException mex) {
 //        }
-         
-         response.sendRedirect(request.getContextPath()+"/Jobs");
+//
+        emailBean.sendEmail();
+
+        response.sendRedirect(request.getContextPath() + "/Jobs");
     }
 
     /**
