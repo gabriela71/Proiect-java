@@ -6,7 +6,9 @@
 package com.project.jobs.ejb;
 
 import com.project.jobs.common.CandidateDetails;
+import com.project.jobs.entity.CV;
 import com.project.jobs.entity.Candidate;
+import com.project.jobs.servlet.Register;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -27,6 +29,37 @@ public class CandidateBean {
     @PersistenceContext
     private EntityManager em;
     
+    
+    
+    
+    public void createCandidate(String prenume, String nume, String nrTelefon, String nrMobil,String email, String username,String address,String password )
+    {
+       Candidate candidate = new Candidate();
+       candidate.setPrenume(prenume);
+       candidate.setNume(nume);
+       candidate.setNrTelefon(nrTelefon);
+       candidate.setNrMobil(nrMobil);
+       candidate.setEmail(email);
+       candidate.setUsername(username);
+       candidate.setAddress(address);
+       candidate.setPassword(password);
+       
+       em.persist(candidate);
+       
+       
+    
+    }
+    
+  /*  public void addCVToCandidate (String filename, String fileType, byte[] fileContent){
+        LOG.info("addCVToCandidate");
+        CV cv = new CV();
+        cv.setFilename(filename);
+        cv.setFileType(fileType);
+        cv.setFileContent(fileContent);
+        
+        em.persist(cv);
+    }
+    */
     public CandidateDetails getLoggedUser(String usernameLogin) {
         LOG.info("getAllUsers");
         try {         

@@ -2,7 +2,7 @@
 
 
 <nav class="navbar navbar-expand-md navbar-dark bg-primary  ">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}">Jobs</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -30,7 +30,14 @@
         </ul>
         <ul class="navbar-nav m1-auto">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>
+                <c:choose>
+                <c:when test="${pageContext.request.getRemoteUser()==null}">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>
+                </c:when>
+                <c:otherwise>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
+                </c:otherwise>
+                </c:choose>
             </li>    
         </ul> 
     </div>

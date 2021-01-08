@@ -5,13 +5,17 @@
  */
 package com.project.jobs.servlet;
 
+import com.project.jobs.ejb.CandidateBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -19,6 +23,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Register", urlPatterns = {"/Register"})
 public class Register extends HttpServlet {
+
+    @Inject
+    CandidateBean candidateBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,7 +44,7 @@ public class Register extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Register</title>");            
+            out.println("<title>Servlet Register</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
@@ -74,7 +81,32 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-          
+        String prenume = request.getParameter("prenume");
+        String nume = request.getParameter("nume");
+        String nrTelefon = request.getParameter("nrTelefon");
+        String nrMobil = request.getParameter("nrMobil");
+        String email = request.getParameter("email");
+        String username = request.getParameter("username");
+        String address = request.getParameter("address");
+        String password = request.getParameter("password");
+
+        candidateBean.createCandidate(prenume, nume, nrTelefon, nrMobil, email, username, address, password);
+
+       /* Part filePart = request.getPart("file");
+        String fileName = filePart.getSubmittedFileName();
+        String fileType = filePart.getContentType();
+        long fileSize = filePart.getSize();
+        byte[] fileContent = new byte[(int) fileSize];
+        filePart.getInputStream().read(fileContent);
+        
+        candidateBean.addCVToCandidate(fileName, fileType, fileContent);
+                
+        */
+       response.sendRedirect(request.getContextPath() + "/Login");
+       
+       
+       
+       
     }
 
     /**
