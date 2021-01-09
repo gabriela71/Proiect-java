@@ -39,7 +39,6 @@ public class User implements Serializable {
     private String pozitie;
     private String username;
     private String password;
-    private String rol;
     
    //@JsonbTransient ????????
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -132,15 +131,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    //ROL IN CADRUL SITE.ULUI
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
     }
 
     //COMENTARII ADAUGATE PENTRU CANDIDATI

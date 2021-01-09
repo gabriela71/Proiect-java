@@ -6,10 +6,7 @@
 package com.project.jobs.ejb;
 
 import com.project.jobs.common.CandidateDetails;
-<<<<<<< HEAD
-=======
 import com.project.jobs.common.CvDetails;
->>>>>>> 3dc73ae18799ce43803bd58623829bff0e07f46f
 import com.project.jobs.entity.CV;
 import com.project.jobs.entity.Candidate;
 import com.project.jobs.servlet.Register;
