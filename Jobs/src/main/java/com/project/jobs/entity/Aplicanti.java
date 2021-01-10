@@ -8,9 +8,12 @@ package com.project.jobs.entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,8 +31,14 @@ public class Aplicanti implements Serializable {
     private Integer id;
 
     //CAMPURI
-    private int idCandidat;
-    private int idPozitie;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CANDIDATE_KEY")
+    private Candidate candidate;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "POSITION_KEY")
+    private Position position;
+    
     private int confirmat;
     private Date dataInterviu;
     private int propus;
@@ -44,22 +53,22 @@ public class Aplicanti implements Serializable {
         this.id = id;
     }
 
-    //ID-UL CANDIDATULUI CARE APLICA PENTRU O POZITIE
-    public int getIdCandidat() {
-        return idCandidat;
+    //CANDIDAT
+    public Candidate getCandidate() {
+        return candidate;
     }
 
-    public void setIdCandidat(int idCandidat) {
-        this.idCandidat = idCandidat;
+    public void setCandidate(Candidate candidate) {
+        this.candidate = candidate;
     }
 
-    //ID-UL POZITIEI LA CARE S-A APLICAT
-    public int getIdPozitie() {
-        return idPozitie;
+    //POZITIE
+    public Position getPosition() {
+        return position;
     }
 
-    public void setIdPozitie(int idPozitie) {
-        this.idPozitie = idPozitie;
+    public void setPosition(Position position) {
+        this.position = position;
     }
     
     //STAREA CANDIDATULUI (1= ACCEPTAT, 0=NEACCEPTAT)

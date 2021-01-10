@@ -5,9 +5,12 @@
  */
 package com.project.jobs.servlet;
 
+import com.project.jobs.common.AplicantDetails;
+import com.project.jobs.ejb.ApplicantBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Proposed", urlPatterns = {"/Proposed"})
 public class Proposed extends HttpServlet {
 
-
+    @Inject
+    private ApplicantBean aplicantBean;
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

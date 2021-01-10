@@ -49,6 +49,8 @@ public class Candidate implements Serializable {
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Collection<CandidateComments> comments;
     
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Collection<Aplicanti> aplicanti;
     
     //ID
     public Integer getId() {

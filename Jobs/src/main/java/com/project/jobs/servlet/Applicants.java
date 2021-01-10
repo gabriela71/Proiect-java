@@ -19,23 +19,32 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Gabriela
+ * @author stefi
  */
-@WebServlet(name = "Choose", urlPatterns = {"/Choose"})
-public class Choose extends HttpServlet {
+@WebServlet(name = "Applicants", urlPatterns = {"/Applicants"})
+public class Applicants extends HttpServlet {
 
     @Inject
     private ApplicantBean aplicantBean;
-    
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("activePage", "Applicants");
-
+        
         List<AplicantDetails> aplicanti= aplicantBean.getAllApplicants();
         request.setAttribute("aplicanti", aplicanti);
-
-        request.getRequestDispatcher("/WEB-INF/pages/choose.jsp").forward(request, response);
+        
+        request.getRequestDispatcher("/WEB-INF/pages/applicants.jsp").forward(request, response);
     }
 
     /**
@@ -49,7 +58,7 @@ public class Choose extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+       // processRequest(request, response);
     }
 
     /**
