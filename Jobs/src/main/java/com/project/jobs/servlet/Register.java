@@ -6,6 +6,7 @@
 package com.project.jobs.servlet;
 
 import com.project.jobs.ejb.CandidateBean;
+import com.project.jobs.ejb.LoginBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.inject.Inject;
@@ -25,11 +26,11 @@ import javax.servlet.http.Part;
 @MultipartConfig
 @WebServlet(name = "Register", urlPatterns = {"/Register"})
 public class Register extends HttpServlet {
-
+    
     @Inject
     CandidateBean candidateBean;
-
-
+    @Inject
+    LoginBean loginBean;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -58,7 +59,7 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+        
         String prenume = request.getParameter("prenume");
         String nume = request.getParameter("nume");
         String nrTelefon = request.getParameter("nrTelefon");
@@ -67,10 +68,12 @@ public class Register extends HttpServlet {
         String username = request.getParameter("username");
         String address = request.getParameter("address");
         String password = request.getParameter("password");
-
+        String rol = request.getParameter("rol");
+        
         candidateBean.createCandidate(prenume, nume, nrTelefon, nrMobil, email, username, address, password);
-
-       Part filePart = request.getPart("file");
+        loginBean.createEntry(username, password, rol);
+        
+        Part filePart = request.getPart("file");
         String fileName = filePart.getSubmittedFileName();
         String fileType = filePart.getContentType();
         long fileSize = filePart.getSize();
@@ -78,13 +81,9 @@ public class Register extends HttpServlet {
         filePart.getInputStream().read(fileContent);
         
         candidateBean.addCVToCandidate(fileName, fileType, fileContent);
-                
-       
-       response.sendRedirect(request.getContextPath() + "/Login");
-       
-       
-       
-       
+        
+        response.sendRedirect(request.getContextPath() + "/Login");
+        
     }
 
     /**
