@@ -6,6 +6,7 @@
 package com.project.jobs.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,9 @@ public class Aplicanti implements Serializable {
     private int idCandidat;
     private int idPozitie;
     private int confirmat;
+    private Date dataInterviu;
+    private int propus;
+    private int ales;
 
     //ID
     public Integer getId() {
@@ -66,6 +70,34 @@ public class Aplicanti implements Serializable {
     public void setConfirmat(int confirmat) {
         this.confirmat = confirmat;
     }
+
+    //DATA INTERVIULUI
+    public Date getDataInterviu() {
+        return dataInterviu;
+    }
+
+    public void setDataInterviu(Date dataInterviu) {
+        this.dataInterviu = dataInterviu;
+    }
+
+    // PROPUS/NEPROPUS
+    public int getPropus() {
+        return propus;
+    }
+
+    public void setPropus(int propus) {
+        this.propus = propus;
+    }
+
+    //ALES/NEALES
+    public int getAles() {
+        return ales;
+    }
+
+    public void setAles(int ales) {
+        this.ales = ales;
+    }
+    
     
     @Override
     public int hashCode() {

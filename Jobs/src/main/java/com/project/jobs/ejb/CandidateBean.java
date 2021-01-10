@@ -74,7 +74,7 @@ public class CandidateBean {
     
     private CandidateDetails copyUserToDetails(Candidate user){
         CandidateDetails candidateDetails=new CandidateDetails(user.getId(),user.getUsername(),
-        user.getNume(),user.getPrenume(),user.getNrTelefon(),user.getNrMobil(),user.getEmail(),user.getAddress(),user.getPozitiaAplicata());
+        user.getNume(),user.getPrenume(),user.getNrTelefon(),user.getNrMobil(),user.getEmail(),user.getAddress());
         
         return candidateDetails;
     }

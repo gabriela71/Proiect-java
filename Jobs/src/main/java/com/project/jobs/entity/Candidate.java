@@ -41,9 +41,8 @@ public class Candidate implements Serializable {
     private String nrMobil;
     private String email;
     private String address;
-    private Date dataInterviu;
-    private String pozitiaAplicata;
-
+    
+    
     @OneToOne(mappedBy = "candidate", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private CV cv;
     
@@ -130,24 +129,6 @@ public class Candidate implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    //DATA LA CARE A AVUT LOC INTERVIUL
-    public Date getDataInterviu() {
-        return dataInterviu;
-    }
-
-    public void setDataInterviu(Date dataInterviu) {
-        this.dataInterviu = dataInterviu;
-    }
-    
-    //POZITIA LA CARE A APLICAT
-    public String getPozitiaAplicata() {
-        return pozitiaAplicata;
-    }
-
-    public void setPozitiaAplicata(String pozitiaAplicata) {
-        this.pozitiaAplicata = pozitiaAplicata;
     }
 
     //CV
