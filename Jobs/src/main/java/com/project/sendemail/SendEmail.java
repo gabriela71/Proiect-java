@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.project.jobs.ejb;
+package com.project.sendemail;
 
+/**
+ *
+ * @author Alex
+ */
 import java.util.Properties;
-import javax.ejb.Stateless;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -18,22 +21,22 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-/**
- *
- * @author Alex
- */
-@Stateless
-public class EmailBean {
-   
-    String to = "jobsrecruiting.project@gmail.com"; //loggedCandidate.getEmail();
+public class SendEmail {
+
+    // Reciver's email ID needs to be mentioned
+    String to = "jobsrecruiting.project@gmail.com"; 
 
     // Sender's email ID needs to be mentioned
     String from = "jobsrecruiting.project@gmail.com";
 
     // Assuming you are sending email from through gmails smtp
     String host = "smtp.gmail.com";
+
+    final String username = "jobsrecruiting.project@gmail.com";
+    final String password = "recruitingjobs157A";
     
-    public void sendEmail(){
+    public void sendEmail() {
+        
         // Get system properties
         Properties properties = System.getProperties();
 
@@ -43,12 +46,20 @@ public class EmailBean {
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
 
+        
+
+       
+//        properties.put("mail.smtp.host", "smtp.gmail.com");
+//        properties.put("mail.smtp.port", "587");
+//        properties.put("mail.smtp.auth", "true");
+//        properties.put("mail.smtp.starttls.enable", "true"); //TLS
+
         // Get the Session object.// and pass username and password
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication("jobsrecruiting.project@gmail.com", "recruitingjobs157A");
+                return new PasswordAuthentication(username, password);
 
             }
 
@@ -87,8 +98,6 @@ public class EmailBean {
 //            } catch (IOException e) {
 //                //eroare
 //            }
-
-
             textPart.setText("Text de proba");
 
             //multipart.addBodyPart(attachmentPart);
@@ -101,4 +110,5 @@ public class EmailBean {
         } catch (MessagingException mex) {
         }
     }
+
 }

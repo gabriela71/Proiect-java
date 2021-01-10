@@ -1,6 +1,6 @@
 <%-- 
-    Document   : browseJobs
-    Created on : Jan 6, 2021, 11:45:27 PM
+    Document   : pozitii
+    Created on : Jan 9, 2021, 11:19:16 AM
     Author     : Alex
 --%>
 
@@ -8,9 +8,10 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<t:pageTemplate pageTitle="Jobs">
-    <form method="POST" action="${pageContext.request.contextPath}/Jobs">
-       
+<t:pageTemplate pageTitle="Positions">
+    <form method="POST" action="${pageContext.request.contextPath}/Positions">
+        <br>
+        <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/Position/Create" role="button">Add Position</a></p>
         <c:forEach var="position" items="${positions}" varStatus="status">
             <div class="row mb-2 ">           
             <div class="col-md-12 ">
@@ -25,11 +26,15 @@
                         <p class="card-text mb-auto ">${position.responsabilitati}</p>                                            
                         <br>
                         <p class="card-text mb-auto">${position.beneficii}</p>                                             
-                        <button class="btn btn-primary  btn-lg btn-block" type="submit" name="position_id" value="${position.id}">Aplica</button>                       
+                        <a class="btn btn-dark btn-lg btn-block" href="${pageContext.request.contextPath}/Position/Update?id=${position.id}&pagina=Positions" role="button">Edit Position</a>                        
+                        <button class="btn btn-danger  btn-lg btn-block" type="submit" name="position_id" value="${position.id}">Close Position</button>                       
                     </div>
                 </div>
-            </div>          
-            </div>                     
-        </c:forEach>      
+            </div>
+            
+            </div>
+                       
+        </c:forEach>
+        
     </form> 
 </t:pageTemplate>

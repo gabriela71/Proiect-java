@@ -17,7 +17,16 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/Jobs">Jobs</a>
-            </li>  
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
+            </li> 
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/PendingPositions">Pending Positions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/InactivePositions">Inactive Positions</a>
+            </li> 
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Language</a>
