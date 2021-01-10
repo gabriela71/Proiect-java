@@ -21,7 +21,6 @@ public class CandidateDetails {
     private String nrMobil;
     private String email;
     private String address;
-    private String pozitiaAplicata;
 
     public CandidateDetails(Integer id, String username, String nume, String prenume, String nrTelefon, String nrMobil, String email, String address) {
         this.id = id;

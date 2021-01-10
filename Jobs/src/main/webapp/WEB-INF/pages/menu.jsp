@@ -21,7 +21,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/Comments">Comments</a>
             </li> 
-        
+            <li class="nav-item ${activePage eq 'Applicants' ? ' active' : ''}">
+              <a class="nav-link" href="${pageContext.request.contextPath}/Applicants">Applicants</a>
+            </li>
+            <li class="nav-item ${activePage eq 'Proposed' ? ' active' : ''}">
+              <a class="nav-link" href="${pageContext.request.contextPath}/Proposed">Proposed</a>
+            </li>
+            <li class="nav-item ${activePage eq 'Choose' ? ' active' : ''}">
+              <a class="nav-link" href="${pageContext.request.contextPath}/Choose">Choose</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Language</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
