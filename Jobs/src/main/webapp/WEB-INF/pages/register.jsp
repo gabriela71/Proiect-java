@@ -5,7 +5,8 @@
 <t:pageTemplate pageTitle="Register">
     <h1>Register</h1>
 
-    <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/Register">
+    <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data"
+          action="${pageContext.request.contextPath}/Register">
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="prenume">First Name</label>
@@ -88,6 +89,8 @@
                     Password is required.
                 </div>
             </div>
+          
+               
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -98,42 +101,86 @@
                 </div>
             </div>
         </div>
+    
 
 
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
-    </form>
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict'
-            var check = function () {
-                if (document.getElementById('password').value ==
-                        document.getElementById('confirm_password').value) {
-                    document.getElementById('message').style.color = 'green';
-                    document.getElementById('message').innerHTML = 'matching';
-                } else {
-                    document.getElementById('message').style.color = 'red';
-                    document.getElementById('message').innerHTML = 'not matching';
-                }
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+</form>
+<script>
+           /*     function checkPassword(form) { 
+                password = form.password.value; 
+                confirm_password = form.confirm_password.value; 
+  
+                // If password not entered 
+                if (password == '') 
+                    alert ("Please enter Password"); 
+                      
+                // If confirm password not entered 
+                else if (confirm_password == '') 
+                    alert ("Please enter confirm password"); 
+                      
+                // If Not same return False.     
+                else if (password != confirm_password) { 
+                    alert ("\nPassword did not match: Please try again...") 
+                    return false; 
+                } 
+  
+                // If same return True. 
+                else{ 
+                    alert("Password Match!") 
+                    return true; 
+                } 
             }
-            window.addEventListener('load', function () {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation')
+            */
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+     /*   function check_pass() {
+            if (document.getElementById('password').value ==
+                    document.getElementById('confirm_password').value) {
+                document.getElementById('submit').disabled = false;
+            } else {
+                document.getElementById('submit').disabled = true;
+            }
+        }*/
+        
+                    // Function to check Whether both passwords 
+            // is same or not. 
+  /*   $(function () {
+        $("#btnSubmit").click(function () {
+            var password = $("#txtPassword").val();
+            var confirm_password = $("#txtConfirmPassword").val();
+            if (password != confirm_password) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        });
+    });
+         * 
+   */
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation')
 
-                // Loop over them and prevent submission
-                Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false && check===false) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
+            // Loop over them and prevent submission
+            Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
 
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-            }, false)
-        })()
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        }, false)
+    })()
 
 
-    </script>
+</script>
+     
+          
+
+        
 </t:pageTemplate>

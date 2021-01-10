@@ -25,7 +25,7 @@ import javax.mail.internet.MimeMultipart;
 @Stateless
 public class EmailBean {
    
-    String to = "jobsrecruiting.project@gmail.com"; //loggedCandidate.getEmail();
+/*    String to = "jobsrecruiting.project@gmail.com"; //loggedCandidate.getEmail();
 
     // Sender's email ID needs to be mentioned
     String from = "jobsrecruiting.project@gmail.com";
@@ -101,4 +101,5 @@ public class EmailBean {
         } catch (MessagingException mex) {
         }
     }
+*/
 }

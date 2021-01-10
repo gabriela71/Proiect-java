@@ -51,7 +51,7 @@ public class CandidateBean {
     
     }
     
-  /*  public void addCVToCandidate (String filename, String fileType, byte[] fileContent){
+   public void addCVToCandidate (String filename, String fileType, byte[] fileContent){
         LOG.info("addCVToCandidate");
         CV cv = new CV();
         cv.setFilename(filename);
@@ -60,7 +60,7 @@ public class CandidateBean {
         
         em.persist(cv);
     }
-    */
+   
     public CandidateDetails getLoggedUser(String usernameLogin) {
         LOG.info("getAllUsers");
         try {         
@@ -91,3 +91,4 @@ public class CandidateBean {
     }
    
 }
+
