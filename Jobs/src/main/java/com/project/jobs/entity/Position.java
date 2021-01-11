@@ -51,6 +51,9 @@ public class Position implements Serializable {
     @OneToMany(mappedBy = "position", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Collection<PositionComments> comments;
     
+    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Collection<Aplicanti> aplicanti;
+    
     
     //ID
     public Integer getId() {

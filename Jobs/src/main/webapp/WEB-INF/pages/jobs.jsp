@@ -10,6 +10,7 @@
 
 <t:pageTemplate pageTitle="Jobs">
     <form method="POST" action="${pageContext.request.contextPath}/Jobs">
+
        
         <c:forEach var="position" items="${positions}" varStatus="status">
             <div class="row mb-2 ">           
@@ -31,5 +32,6 @@
             </div>          
             </div>                     
         </c:forEach>      
+       
     </form> 
 </t:pageTemplate>

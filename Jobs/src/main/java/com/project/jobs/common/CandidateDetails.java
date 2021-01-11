@@ -21,9 +21,8 @@ public class CandidateDetails {
     private String nrMobil;
     private String email;
     private String address;
-    private String pozitiaAplicata;
 
-    public CandidateDetails(Integer id, String username, String nume, String prenume, String nrTelefon, String nrMobil, String email, String address, String pozitiaAplicata) {
+    public CandidateDetails(Integer id, String username, String nume, String prenume, String nrTelefon, String nrMobil, String email, String address) {
         this.id = id;
         this.username = username;
         this.nume = nume;
@@ -32,7 +31,6 @@ public class CandidateDetails {
         this.nrMobil = nrMobil;
         this.email = email;
         this.address = address;
-        this.pozitiaAplicata = pozitiaAplicata;
     }
 
     public Integer getId() {
@@ -68,9 +66,6 @@ public class CandidateDetails {
     }
 
 
-    public String getPozitiaAplicata() {
-        return pozitiaAplicata;
-    }
     
     
     
