@@ -23,14 +23,6 @@ public class AplicantiBean {
     @PersistenceContext
     private EntityManager em;
     
-    public void addAplicant(int idAplicant,int idPozitie){
-        LOG.info("Create Car");
-        Aplicanti aplicant = new Aplicanti();
-        aplicant.setIdCandidat(idAplicant);
-        aplicant.setIdPozitie(idPozitie);
-        aplicant.setConfirmat(0);
-        
-        em.persist(aplicant);
-    }
+    
     
 }

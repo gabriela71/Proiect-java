@@ -29,20 +29,20 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/InactivePositions">Inactive Positions</a>
             </li> 
 
-            
-			
-			<li class="nav-item">
+
+
+            <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/Comments">Comments</a>
             </li> 
             <li class="nav-item ${activePage eq 'Applicants' ? ' active' : ''}">
-              <a class="nav-link" href="${pageContext.request.contextPath}/Applicants">Applicants</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/Applicants">Applicants</a>
             </li>
             <li class="nav-item ${activePage eq 'Proposed' ? ' active' : ''}">
-              <a class="nav-link" href="${pageContext.request.contextPath}/Proposed">Proposed</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/Proposed">Proposed</a>
             </li>          
         </ul>
-		
-		<li class="nav-item dropdown">
+        <ul class="navbar-nav m1-auto">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Language</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item" href="#"><i class="gb uk flag"></i>English</a>
@@ -50,8 +50,8 @@
                     <a class="dropdown-item" href="#"><i class="de flag"></i>German</a>
                 </div>
             </li>
-		
-        <ul class="navbar-nav m1-auto">
+
+
             <li class="nav-item">
                 <c:choose>
                     <c:when test="${pageContext.request.getRemoteUser()==null}">
@@ -62,6 +62,6 @@
                     </c:otherwise>
                 </c:choose>
             </li>    
-        </ul> 		       
+        </ul>    
     </div>
 </nav>
