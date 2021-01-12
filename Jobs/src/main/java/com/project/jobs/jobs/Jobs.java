@@ -8,6 +8,7 @@ package com.project.jobs.jobs;
 import com.project.jobs.common.PositionDetailss;
 import com.project.jobs.ejb.AplicantiBean;
 import com.project.jobs.ejb.CandidateBean;
+import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.PositionBean;
 import com.project.sendemail.SendEmail;
 import java.io.IOException;
@@ -28,13 +29,15 @@ public class Jobs extends HttpServlet {
 
     @Inject
     CandidateBean candidateBean;
-    
-    
+       
     @Inject
     AplicantiBean aplicantiBean;
     
     @Inject
     PositionBean positionBean;
+    
+    @Inject
+    I18n i18n;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -51,6 +54,8 @@ public class Jobs extends HttpServlet {
 
         List<PositionDetailss> positions=positionBean.getActivePositions();
         request.setAttribute("positions", positions);
+        
+        request.setAttribute("language", i18n.getResourceBundle().getLocale());
         request.getRequestDispatcher("/WEB-INF/pages/jobs.jsp").forward(request, response);
     }
 

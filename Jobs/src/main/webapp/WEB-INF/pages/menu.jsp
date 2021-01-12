@@ -29,8 +29,6 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/InactivePositions">Inactive Positions</a>
             </li> 
 
-
-
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/Comments">Comments</a>
             </li> 
@@ -41,16 +39,17 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/Proposed">Proposed</a>
             </li>          
         </ul>
+            
         <ul class="navbar-nav m1-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Language</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#"><i class="gb uk flag"></i>English</a>
-                    <a class="dropdown-item" href="#"><i class="ro flag"></i>Romanian</a>
-                    <a class="dropdown-item" href="#"><i class="de flag"></i>German</a>
-                </div>
-            </li>
-
+            
+            <form method="POST" action="${pageContext.request.contextPath}/ChangeLanguage">
+                <select id="language" name="language" onchange="submit()">
+                 <option value="">Language</option>
+                 <option value="en" ${language eq 'en' ? ' selected' : ''}>English</option>
+                 <option value="ro" ${language eq 'ro' ? ' selected' : ''}>Romanian</option>
+                 <option value="de" ${language eq 'de' ? ' selected' : ''}>German</option>
+             </select>
+            </form>
 
             <li class="nav-item">
                 <c:choose>

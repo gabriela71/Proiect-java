@@ -5,6 +5,7 @@
  */
 package com.project.jobs.servlet.position;
 
+import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.PositionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,6 +25,8 @@ public class AddPosition extends HttpServlet {
 
    @Inject
    PositionBean positionBean;
+   @Inject
+   I18n i18n;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -37,6 +40,7 @@ public class AddPosition extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("language", i18n.getResourceBundle().getLocale());
         request.getRequestDispatcher("/WEB-INF/pages/addPosition.jsp").forward(request, response);    
     }
 

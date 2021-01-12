@@ -6,6 +6,7 @@
 package com.project.jobs.servlet;
 
 import com.project.jobs.ejb.CandidateBean;
+import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.LoginBean;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,6 +32,8 @@ public class Register extends HttpServlet {
     CandidateBean candidateBean;
     @Inject
     LoginBean loginBean;
+    @Inject
+    I18n i18n;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -45,6 +48,8 @@ public class Register extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
+        request.setAttribute("language", i18n.getResourceBundle().getLocale());
         request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
     }
 

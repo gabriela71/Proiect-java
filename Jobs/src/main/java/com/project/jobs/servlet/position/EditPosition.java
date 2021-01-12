@@ -6,10 +6,9 @@
 package com.project.jobs.servlet.position;
 
 import com.project.jobs.common.PositionDetailss;
+import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.PositionBean;
-import com.project.jobs.entity.PositionDetails;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +25,9 @@ public class EditPosition extends HttpServlet {
 
     @Inject
     PositionBean positionBean;
+    
+    @Inject
+    I18n i18n;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -45,6 +47,7 @@ public class EditPosition extends HttpServlet {
         request.setAttribute("position", position);        
         request.setAttribute("pagina", request.getParameter("pagina"));
         
+        request.setAttribute("language", i18n.getResourceBundle().getLocale());
         request.getRequestDispatcher("/WEB-INF/pages/editPosition.jsp").forward(request, response);
     }
 

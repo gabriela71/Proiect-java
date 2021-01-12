@@ -1,15 +1,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+ <fmt:setLocale value="${language}" />
+ <fmt:setBundle basename="com.project.i18n.language" />
 
 <t:pageTemplate pageTitle="Register">
-    <h1>Register</h1>
+    <h1><fmt:message key="register"/></h1>
 
     <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data"
           action="${pageContext.request.contextPath}/Register">
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="prenume">First Name</label>
+                <label for="prenume"><fmt:message key="forename"/></label>
                 <input type="text" class="form-control" id="prenume" placeholder=""  required name="prenume">
                 <div class="invalid-feedback">
                     Please enter your First Name.
@@ -18,7 +22,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="nume">Last Name</label>
+                <label for="nume"><fmt:message key="surname"/></label>
                 <input type="text" class="form-control" id="nume" placeholder=""  required name="nume">
                 <div class="invalid-feedback">
                     Please enter your Last Name.
@@ -27,7 +31,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="nrTelefon">Phone number</label>
+                <label for="nrTelefon"><fmt:message key="phone"/></label>
                 <input type="text" class="form-control" id="nrTelefon" placeholder=""  required name="nrTelefon">
                 <div class="invalid-feedback">
                     Please enter your Mobile Number.
@@ -36,7 +40,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="nrTelefon">Mobile number</label>
+                <label for="nrTelefon"><fmt:message key="mobile"/></label>
                 <input type="text" class="form-control" id="nrMobil" placeholder=""  required name="nrMobil">
                 <div class="invalid-feedback">
                     Please enter your Mobile.
@@ -46,7 +50,7 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="email">Email</label>
+                <label for="email"><fmt:message key="email"/></label>
                 <input type="email" class="form-control" id="email" placeholder=""  required name="email">
                 <div class="invalid-feedback">
                     Please enter your email.
@@ -56,7 +60,7 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="username">Username</label>
+                <label for="username"><fmt:message key="username"/></label>
                 <input type="text" class="form-control" id="username" placeholder=""  required name="username">
                 <div class="invalid-feedback">
                     Please enter your Username.
@@ -65,7 +69,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="address">Address</label>
+                <label for="address"><fmt:message key="adress"/></label>
                 <input type="text" class="form-control" id="address" placeholder=""  required name="address">
                 <div class="invalid-feedback">
                     Please enter your Address.
@@ -74,7 +78,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="password">Password</label>
+                <label for="password"><fmt:message key="password"/></label>
                 <input type="password" class="form-control" id="password" placeholder=""  required name="password">
                 <div class="invalid-feedback">
                     Password is required.
@@ -94,7 +98,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="cv">Upload your CV:</label>
+                <label for="cv"><fmt:message key="CV"/></label>
                 <input type="file" class="form-control" id="cv" placeholder=""  required name="file">
                 <div class="invalid-feedback">
                     CV is required
@@ -104,7 +108,7 @@
     
 
 
-    <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+    <button class="btn btn-primary btn-lg btn-block" type="submit"><fmt:message key="submit"/></button>
 </form>
 <script>
            /*     function checkPassword(form) { 
