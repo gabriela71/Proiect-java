@@ -32,7 +32,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/Comments">Comments</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/CommentsMenu">Comments</a>
             </li> 
             <li class="nav-item ${activePage eq 'Applicants' ? ' active' : ''}">
                 <a class="nav-link" href="${pageContext.request.contextPath}/Applicants">Applicants</a>

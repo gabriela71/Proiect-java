@@ -10,6 +10,7 @@ import com.project.jobs.common.CvDetails;
 import com.project.jobs.entity.CV;
 import com.project.jobs.entity.Candidate;
 import com.project.jobs.servlet.Register;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -90,5 +91,43 @@ public class CandidateBean {
         return new CvDetails(cv.getId(), cv.getFilename(),cv.getFileType(),cv.getFileContent());
     }
    
+    
+    
+        public List<CandidateDetails> getAllCandidates() {
+        LOG.info("getAllCandidates");
+        try {
+            List<Candidate> candidate = (List<Candidate>) em.createQuery("SELECT u FROM Candidate u").getResultList();
+            return copyCandidatesToDetails(candidate);
+        } catch (Exception ex) {
+            throw new EJBException(ex);
+        }
+    }
+        
+        
+        
+            private List<CandidateDetails> copyCandidatesToDetails(List<Candidate> candidat) {
+        List<CandidateDetails> detailsList = new ArrayList<>();
+        for (Candidate candidate : candidat) {
+            CandidateDetails candidateDetails = new CandidateDetails(candidate.getId(),
+                    candidate.getUsername(),
+                    candidate.getNume(),
+                    candidate.getPrenume(),
+                    candidate.getNrTelefon(),
+                    candidate.getNrMobil(),
+                    candidate.getEmail(),
+                    candidate.getAddress());
+            detailsList.add(candidateDetails);
+        }
+        return detailsList;
+    }
+            
+            
+    public CandidateDetails findById(Integer candidateId){
+        Candidate candidate=em.find(Candidate.class,candidateId);
+        return new CandidateDetails(candidate.getId(),candidate.getUsername(),
+                candidate.getNume(),candidate.getPrenume(),candidate.getNrTelefon(),
+                candidate.getNrMobil(),candidate.getEmail(),candidate.getAddress());
+    }
+    
 }
 
