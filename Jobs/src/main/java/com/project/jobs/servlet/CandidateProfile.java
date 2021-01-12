@@ -5,10 +5,10 @@
  */
 package com.project.jobs.servlet;
 
+import com.project.jobs.common.CandidateDetails;
 import com.project.jobs.ejb.CandidateBean;
 import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.LoginBean;
-import com.project.jobs.util.PasswordUtil;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -21,18 +21,21 @@ import javax.servlet.http.Part;
 
 /**
  *
- * @author Andrei
+ * @author Alex
  */
 @MultipartConfig
-@WebServlet(name = "Register", urlPatterns = {"/Register"})
-public class Register extends HttpServlet {
-    
+@WebServlet(name = "CandidateProfile", urlPatterns = {"/CandidateProfile"})
+public class CandidateProfile extends HttpServlet {
+
     @Inject
     CandidateBean candidateBean;
-    @Inject
-    LoginBean loginBean;
+    
     @Inject
     I18n i18n;
+    
+    @Inject
+    LoginBean loginBean;
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -47,9 +50,13 @@ public class Register extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+     
+        CandidateDetails candidate =candidateBean.getLoggedUser(request.getRemoteUser());
+        request.setAttribute("candidate", candidate);        
+        
         
         request.setAttribute("language", i18n.getResourceBundle().getLocale());
-        request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/candidateProfile.jsp").forward(request, response);
     }
 
     /**
@@ -69,15 +76,14 @@ public class Register extends HttpServlet {
         String nrTelefon = request.getParameter("nrTelefon");
         String nrMobil = request.getParameter("nrMobil");
         String email = request.getParameter("email");
-        String username = request.getParameter("username");
         String address = request.getParameter("address");
-        String password = request.getParameter("password");
-        String rol = request.getParameter("rol");
         
-        String passwordSha256=PasswordUtil.convertToSha256(password);
         
-        candidateBean.createCandidate(prenume, nume, nrTelefon, nrMobil, email, username, address, passwordSha256);
-        loginBean.createEntry(username, passwordSha256, rol);
+        CandidateDetails candidate= candidateBean.getLoggedUser(request.getRemoteUser());
+        
+        candidateBean.updateCandidate(candidate.getId(), nume, prenume, address, email, nrTelefon, nrMobil);
+        
+        
         
         Part filePart = request.getPart("file");
         String fileName = filePart.getSubmittedFileName();
@@ -86,9 +92,9 @@ public class Register extends HttpServlet {
         byte[] fileContent = new byte[(int) fileSize];
         filePart.getInputStream().read(fileContent);
         
-        candidateBean.addCVToCandidate(candidateBean.getLoggedUser(username).getId(),fileName, fileType, fileContent);
+        candidateBean.UpdateCVCandidate(candidate.getId(), fileName, fileType, fileContent);
         
-        response.sendRedirect(request.getContextPath() + "/Login");
+        response.sendRedirect(request.getContextPath());
         
     }
 

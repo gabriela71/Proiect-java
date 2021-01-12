@@ -37,7 +37,10 @@
             </li>
             <li class="nav-item ${activePage eq 'Proposed' ? ' active' : ''}">
                 <a class="nav-link" href="${pageContext.request.contextPath}/Proposed">Proposed</a>
-            </li>          
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/CandidateProfile">My Profile</a>
+            </li>
         </ul>
             
         <ul class="navbar-nav m1-auto">

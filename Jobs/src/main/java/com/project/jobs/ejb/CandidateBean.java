@@ -9,7 +9,6 @@ import com.project.jobs.common.CandidateDetails;
 import com.project.jobs.common.CvDetails;
 import com.project.jobs.entity.CV;
 import com.project.jobs.entity.Candidate;
-import com.project.jobs.servlet.Register;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -51,15 +50,31 @@ public class CandidateBean {
     
     }
     
-   public void addCVToCandidate (String filename, String fileType, byte[] fileContent){
+   public void addCVToCandidate (int candidate_id,String filename, String fileType, byte[] fileContent){
         LOG.info("addCVToCandidate");
         CV cv = new CV();
         cv.setFilename(filename);
         cv.setFileType(fileType);
         cv.setFileContent(fileContent);
         
+        Candidate candidate= em.find(Candidate.class,candidate_id);
+        candidate.setCv(cv);
+        cv.setCandidate(candidate);
+        
         em.persist(cv);
     }
+   
+   public void UpdateCVCandidate(int candidate_id,String filename,String fileType,byte[] fileContent){
+       LOG.info("updateCv");
+       
+       Candidate candidate=em.find(Candidate.class, candidate_id);
+       
+       CV cv=candidate.getCv();
+       cv.setFilename(filename);
+       cv.setFileType(fileType);
+       cv.setFileContent(fileContent);
+       
+   }
    
     public CandidateDetails getLoggedUser(String usernameLogin) {
         LOG.info("getAllUsers");
@@ -88,6 +103,18 @@ public class CandidateBean {
         }
         CV cv=cvs.get(0);
         return new CvDetails(cv.getId(), cv.getFilename(),cv.getFileType(),cv.getFileContent());
+    }
+    
+    public void updateCandidate(int candidate_id,String nume,String prenume,String adress,String email,String nrTelefon,String nrMobil){
+        
+        Candidate candidate = em.find(Candidate.class, candidate_id);
+        candidate.setAddress(adress);
+        candidate.setEmail(email);
+        candidate.setNrMobil(nrMobil);
+        candidate.setNrTelefon(nrTelefon);
+        candidate.setNume(nume);
+        candidate.setPrenume(prenume);
+        
     }
    
 }
