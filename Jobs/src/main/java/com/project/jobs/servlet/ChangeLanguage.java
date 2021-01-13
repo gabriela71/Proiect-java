@@ -3,14 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.project.jobs.servlet.position;
+package com.project.jobs.servlet;
 
-import com.project.jobs.common.PositionDetailss;
 import com.project.jobs.ejb.I18n;
-import com.project.jobs.ejb.PositionBean;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,11 +18,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alex
  */
-@WebServlet(name = "PendingPositions", urlPatterns = {"/PendingPositions"})
-public class PendingPositions extends HttpServlet {
-    
-    @Inject
-    PositionBean positionBean;
+@WebServlet(name = "ChangeLanguage", urlPatterns = {"/ChangeLanguage"})
+public class ChangeLanguage extends HttpServlet {
+
     @Inject
     I18n i18n;
 
@@ -42,12 +36,7 @@ public class PendingPositions extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        List<PositionDetailss> positions = positionBean.getPendingPositions();
-        request.setAttribute("positions", positions);
-        
-        request.setAttribute("language", i18n.getResourceBundle().getLocale());
-        request.getRequestDispatcher("/WEB-INF/pages/pozitiiNeaprobate.jsp").forward(request, response);
+         
     }
 
     /**
@@ -62,17 +51,9 @@ public class PendingPositions extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        if (request.getParameter("approve") != null) {
-            int positionId = Integer.parseInt(request.getParameter("approve"));            
-            positionBean.aprobaPozitie(positionId);
-        }
-        
-        if (request.getParameter("delete") != null) {
-            int positionId = Integer.parseInt(request.getParameter("delete"));
-            positionBean.deletePosition(positionId);
-        }
-        
-        response.sendRedirect(request.getContextPath() + "/PendingPositions");
+        String language=request.getParameter("language");      
+        i18n.changeLanguage(language);        
+        response.sendRedirect(request.getContextPath());
         
     }
 

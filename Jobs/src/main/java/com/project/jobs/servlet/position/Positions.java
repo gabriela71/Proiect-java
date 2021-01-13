@@ -6,6 +6,7 @@
 package com.project.jobs.servlet.position;
 
 import com.project.jobs.common.PositionDetailss;
+import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.PositionBean;
 import java.io.IOException;
 import java.util.List;
@@ -26,6 +27,9 @@ public class Positions extends HttpServlet {
     
     @Inject
     PositionBean positionBean;
+    
+    @Inject
+    I18n i18n;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -42,6 +46,8 @@ public class Positions extends HttpServlet {
         
         List<PositionDetailss> positions=positionBean.getActivePositions();
         request.setAttribute("positions", positions);
+        
+        request.setAttribute("language", i18n.getResourceBundle().getLocale());
         request.getRequestDispatcher("/WEB-INF/pages/pozitii.jsp").forward(request, response);
         
     }

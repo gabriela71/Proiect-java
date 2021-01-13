@@ -7,10 +7,13 @@ package com.project.jobs.ejb;
 
 
 import com.project.jobs.entity.Login;
+import java.util.List;
 import java.util.logging.Logger;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -34,4 +37,6 @@ public class LoginBean {
         
         em.persist(login);
     }
+    
+    
 }

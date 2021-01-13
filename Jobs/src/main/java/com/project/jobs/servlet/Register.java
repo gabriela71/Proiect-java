@@ -6,11 +6,11 @@
 package com.project.jobs.servlet;
 
 import com.project.jobs.ejb.CandidateBean;
+import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.LoginBean;
+import com.project.jobs.util.PasswordUtil;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.inject.Inject;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -31,6 +31,8 @@ public class Register extends HttpServlet {
     CandidateBean candidateBean;
     @Inject
     LoginBean loginBean;
+    @Inject
+    I18n i18n;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -45,6 +47,8 @@ public class Register extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
+        request.setAttribute("language", i18n.getResourceBundle().getLocale());
         request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
     }
 
@@ -70,8 +74,10 @@ public class Register extends HttpServlet {
         String password = request.getParameter("password");
         String rol = request.getParameter("rol");
         
-        candidateBean.createCandidate(prenume, nume, nrTelefon, nrMobil, email, username, address, password);
-        loginBean.createEntry(username, password, rol);
+        String passwordSha256=PasswordUtil.convertToSha256(password);
+        
+        candidateBean.createCandidate(prenume, nume, nrTelefon, nrMobil, email, username, address, passwordSha256);
+        loginBean.createEntry(username, passwordSha256, rol);
         
         Part filePart = request.getPart("file");
         String fileName = filePart.getSubmittedFileName();
@@ -80,7 +86,7 @@ public class Register extends HttpServlet {
         byte[] fileContent = new byte[(int) fileSize];
         filePart.getInputStream().read(fileContent);
         
-        candidateBean.addCVToCandidate(fileName, fileType, fileContent);
+        candidateBean.addCVToCandidate(candidateBean.getLoggedUser(username).getId(),fileName, fileType, fileContent);
         
         response.sendRedirect(request.getContextPath() + "/Login");
         

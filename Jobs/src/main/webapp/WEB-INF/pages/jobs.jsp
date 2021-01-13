@@ -7,6 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+ <fmt:setLocale value="${language}" />
+ <fmt:setBundle basename="com.project.i18n.language" />
 
 <t:pageTemplate pageTitle="Jobs">
     <form method="POST" action="${pageContext.request.contextPath}/Jobs">
@@ -22,11 +26,11 @@
                         <h3 class="mb-0">
                             <div class="text-dark" >${position.denumire}</div>
                         </h3>
-                        <div class="mb-1 text-muted">Locuri disponibile: ${position.nrPersoaneCautate-position.nrPersoaneAprobate}</div>
+                        <div class="mb-1 text-muted"><fmt:message key="availableJobs"/>: ${position.nrPersoaneCautate-position.nrPersoaneAprobate}</div>
                         <p class="card-text mb-auto ">${position.responsabilitati}</p>                                            
                         <br>
                         <p class="card-text mb-auto">${position.beneficii}</p>                                             
-                        <button class="btn btn-primary  btn-lg btn-block" type="submit" name="position_id" value="${position.id}">Aplica</button>                       
+                        <button class="btn btn-primary  btn-lg btn-block" type="submit" name="position_id" value="${position.id}"><fmt:message key="apply"/></button>                       
                     </div>
                 </div>
             </div>          

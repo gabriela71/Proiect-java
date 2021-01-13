@@ -1,20 +1,25 @@
+<%-- 
+    Document   : candidateProfile
+    Created on : Jan 12, 2021, 9:57:05 PM
+    Author     : Alex
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
- <fmt:setLocale value="${language}" />
- <fmt:setBundle basename="com.project.i18n.language" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="com.project.i18n.language" />
 
-<t:pageTemplate pageTitle="Register">
-    <h1><fmt:message key="register"/></h1>
+<t:pageTemplate pageTitle="Profile">
+<h1><fmt:message key="profile"/></h1>
 
-    <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data"
-          action="${pageContext.request.contextPath}/Register">
+    <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/CandidateProfile" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="prenume"><fmt:message key="forename"/></label>
-                <input type="text" class="form-control" id="prenume" placeholder=""  required name="prenume">
+                <input type="text" class="form-control" id="prenume" placeholder="" value="${candidate.prenume}"  required name="prenume">
                 <div class="invalid-feedback">
                     Please enter your First Name.
                 </div>
@@ -23,7 +28,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="nume"><fmt:message key="surname"/></label>
-                <input type="text" class="form-control" id="nume" placeholder=""  required name="nume">
+                <input type="text" class="form-control" id="nume" placeholder="" value="${candidate.nume}" required name="nume">
                 <div class="invalid-feedback">
                     Please enter your Last Name.
                 </div>
@@ -32,7 +37,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="nrTelefon"><fmt:message key="phone"/></label>
-                <input type="text" class="form-control" id="nrTelefon" placeholder=""  required name="nrTelefon">
+                <input type="text" class="form-control" id="nrTelefon" placeholder="" value="${candidate.nrTelefon}"  required name="nrTelefon">
                 <div class="invalid-feedback">
                     Please enter your Mobile Number.
                 </div>
@@ -41,7 +46,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="nrTelefon"><fmt:message key="mobile"/></label>
-                <input type="text" class="form-control" id="nrMobil" placeholder=""  required name="nrMobil">
+                <input type="text" class="form-control" id="nrMobil" placeholder="" value="${candidate.nrMobil}" required name="nrMobil">
                 <div class="invalid-feedback">
                     Please enter your Mobile.
                 </div>
@@ -51,7 +56,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="email"><fmt:message key="email"/></label>
-                <input type="email" class="form-control" id="email" placeholder=""  required name="email">
+                <input type="email" class="form-control" id="email" placeholder="" value="${candidate.email}" required name="email">
                 <div class="invalid-feedback">
                     Please enter your email.
                 </div>
@@ -60,55 +65,25 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="username"><fmt:message key="username"/></label>
-                <input type="text" class="form-control" id="username" placeholder=""  required name="username">
-                <div class="invalid-feedback">
-                    Please enter your Username.
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
                 <label for="address"><fmt:message key="adress"/></label>
-                <input type="text" class="form-control" id="address" placeholder=""  required name="address">
+                <input type="text" class="form-control" id="address" placeholder="" value="${candidate.address}"  required name="address">
                 <div class="invalid-feedback">
                     Please enter your Address.
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="password"><fmt:message key="password"/></label>
-                <input type="password" class="form-control" id="password" placeholder=""  required name="password">
-                <div class="invalid-feedback">
-                    Password is required.
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="password">Confirm Password</label>
-                <input type="password" class="form-control" id="confirm_password" placeholder=""  required name="confirm_password">
-                <div class="invalid-feedback">
-                    Password is required.
-                </div>
-            </div>
-          
-               
-        </div>
+    
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="cv"><fmt:message key="CV"/></label>
-                <input type="file" class="form-control" id="cv" placeholder=""  required name="file">
+                <input type="file" class="form-control" id="cv" placeholder=""   name="file">
                 <div class="invalid-feedback">
                     CV is required
                 </div>
             </div>
         </div>
-    
 
-
-    <button class="btn btn-primary btn-lg btn-block" type="submit"><fmt:message key="submit"/></button>
+    <button class="btn btn-primary btn-lg btn-block" type="submit"><fmt:message key="editProfile"/></button>
 </form>
 <script>
            /*     function checkPassword(form) { 

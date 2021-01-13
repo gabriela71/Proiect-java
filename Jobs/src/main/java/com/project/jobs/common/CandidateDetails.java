@@ -32,6 +32,8 @@ public class CandidateDetails {
         this.email = email;
         this.address = address;
     }
+    
+    
 
     public Integer getId() {
         return id;

@@ -3,32 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.project.jobs.servlet.position;
+package com.project.jobs.servlet;
 
-import com.project.jobs.common.PositionDetailss;
+import com.project.jobs.common.CandidateDetails;
+import com.project.jobs.ejb.CandidateBean;
 import com.project.jobs.ejb.I18n;
-import com.project.jobs.ejb.PositionBean;
+import com.project.jobs.ejb.LoginBean;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Alex
  */
-@WebServlet(name = "PendingPositions", urlPatterns = {"/PendingPositions"})
-public class PendingPositions extends HttpServlet {
+@MultipartConfig
+@WebServlet(name = "CandidateProfile", urlPatterns = {"/CandidateProfile"})
+public class CandidateProfile extends HttpServlet {
+
+    @Inject
+    CandidateBean candidateBean;
     
     @Inject
-    PositionBean positionBean;
-    @Inject
     I18n i18n;
+    
+    @Inject
+    LoginBean loginBean;
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -43,11 +50,13 @@ public class PendingPositions extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        List<PositionDetailss> positions = positionBean.getPendingPositions();
-        request.setAttribute("positions", positions);
+     
+        CandidateDetails candidate =candidateBean.getLoggedUser(request.getRemoteUser());
+        request.setAttribute("candidate", candidate);        
+        
         
         request.setAttribute("language", i18n.getResourceBundle().getLocale());
-        request.getRequestDispatcher("/WEB-INF/pages/pozitiiNeaprobate.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/candidateProfile.jsp").forward(request, response);
     }
 
     /**
@@ -62,17 +71,30 @@ public class PendingPositions extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        if (request.getParameter("approve") != null) {
-            int positionId = Integer.parseInt(request.getParameter("approve"));            
-            positionBean.aprobaPozitie(positionId);
-        }
+        String prenume = request.getParameter("prenume");
+        String nume = request.getParameter("nume");
+        String nrTelefon = request.getParameter("nrTelefon");
+        String nrMobil = request.getParameter("nrMobil");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
         
-        if (request.getParameter("delete") != null) {
-            int positionId = Integer.parseInt(request.getParameter("delete"));
-            positionBean.deletePosition(positionId);
-        }
         
-        response.sendRedirect(request.getContextPath() + "/PendingPositions");
+        CandidateDetails candidate= candidateBean.getLoggedUser(request.getRemoteUser());
+        
+        candidateBean.updateCandidate(candidate.getId(), nume, prenume, address, email, nrTelefon, nrMobil);
+        
+        
+        
+        Part filePart = request.getPart("file");
+        String fileName = filePart.getSubmittedFileName();
+        String fileType = filePart.getContentType();
+        long fileSize = filePart.getSize();
+        byte[] fileContent = new byte[(int) fileSize];
+        filePart.getInputStream().read(fileContent);
+        
+        candidateBean.UpdateCVCandidate(candidate.getId(), fileName, fileType, fileContent);
+        
+        response.sendRedirect(request.getContextPath());
         
     }
 
