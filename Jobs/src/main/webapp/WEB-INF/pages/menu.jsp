@@ -36,7 +36,10 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/Applicants">Applicants</a>
             </li>
             <li class="nav-item ${activePage eq 'Proposed' ? ' active' : ''}">
-                <a class="nav-link" href="${pageContext.request.contextPath}/Proposed">Proposed</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/Proposed">Proposed Candidate</a>
+            </li>
+            <li class="nav-item ${activePage eq 'Choose' ? ' active' : ''}">
+                <a class="nav-link" href="${pageContext.request.contextPath}/Choose">Elected Candidate</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/CandidateProfile">My Profile</a>

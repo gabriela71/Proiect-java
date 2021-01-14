@@ -7,6 +7,7 @@ package com.project.jobs.servlet;
 
 import com.project.jobs.common.AplicantDetails;
 import com.project.jobs.ejb.ApplicantBean;
+import com.project.jobs.ejb.I18n;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -26,15 +27,28 @@ public class Choose extends HttpServlet {
 
     @Inject
     private ApplicantBean aplicantBean;
+     
+    @Inject
+    I18n i18n;
     
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("activePage", "Applicants");
 
-        List<AplicantDetails> aplicanti= aplicantBean.getAllApplicants();
+        List<AplicantDetails> aplicanti= aplicantBean.getAllApplicants(3);
         request.setAttribute("aplicanti", aplicanti);
 
+        request.setAttribute("language", i18n.getResourceBundle().getLocale());
         request.getRequestDispatcher("/WEB-INF/pages/choose.jsp").forward(request, response);
     }
 

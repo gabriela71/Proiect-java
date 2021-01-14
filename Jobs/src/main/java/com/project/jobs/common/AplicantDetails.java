@@ -6,6 +6,7 @@
 package com.project.jobs.common;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *

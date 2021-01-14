@@ -10,8 +10,11 @@ import com.project.jobs.ejb.ApplicantBean;
 import com.project.jobs.ejb.I18n;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,17 +24,17 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Gabriela
+ * @author stefi
  */
-@WebServlet(name = "Proposed", urlPatterns = {"/Proposed"})
-public class Proposed extends HttpServlet {
+@WebServlet(name = "Suggest", urlPatterns = {"/Suggest"})
+public class Suggest extends HttpServlet {
 
     @Inject
     private ApplicantBean aplicantBean;
-    
+     
     @Inject
     I18n i18n;
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -44,13 +47,13 @@ public class Proposed extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          request.setAttribute("activePage", "Applicants");
-
-        List<AplicantDetails> aplicanti= aplicantBean.getAllApplicants(2);
-        request.setAttribute("aplicanti", aplicanti);
-
+        
+        int aplicantId=Integer.parseInt(request.getParameter("id"));
+        AplicantDetails aplicant = aplicantBean.findById(aplicantId);
+        request.setAttribute("aplicant", aplicant);
+        
         request.setAttribute("language", i18n.getResourceBundle().getLocale());
-        request.getRequestDispatcher("/WEB-INF/pages/proposed.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/suggest.jsp").forward(request, response);
     }
 
     /**
@@ -64,22 +67,17 @@ public class Proposed extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-       String[] aplicantIdsAsString= request.getParameterValues("aplicant_ids");
-        
-        if(aplicantIdsAsString != null)
-        {
-            List<Integer> aplicantIds= new ArrayList<>();
+        String data=request.getParameter("dataInterviu");
+        Integer aplicandtId=Integer.parseInt(request.getParameter("aplicant_id"));
+        try {
             
-            for(String aplicantIdAsString: aplicantIdsAsString)
-            {
-                aplicantIds.add(Integer.parseInt(aplicantIdAsString));
-            }
+            Date dataInterviu = new SimpleDateFormat("yyyy-MM-dd").parse(data);
+            aplicantBean.addDataInterviu(aplicandtId,dataInterviu);
             
-            aplicantBean.deleteApplicantsByIds(aplicantIds);
+            response.sendRedirect(request.getContextPath()+"/Applicants");
+        } catch (ParseException ex) {
+            Logger.getLogger(Suggest.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-        response.sendRedirect(request.getContextPath()+ "/Proposed");
     }
 
     /**
