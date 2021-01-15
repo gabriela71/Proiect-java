@@ -44,6 +44,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/CandidateProfile">My Profile</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/User">Users</a>
+            </li>
         </ul>
             
         <ul class="navbar-nav m1-auto">

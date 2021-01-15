@@ -8,6 +8,7 @@ package com.project.jobs.ejb;
 import com.project.jobs.common.UserDetails;
 import com.project.jobs.entity.User;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -98,4 +99,34 @@ public class UserBean {
          
         return detailsList;
     }
+    
+      //STERGE USERII DUPA ID
+    public void deleteUsersByIds(Collection <Integer> ids) {
+        
+        LOG.info("deleteUsersByIds");
+        
+        for(Integer id : ids)
+        {
+            User users = em.find(User.class,id);
+            em.remove(users);
+        }
+    } 
+    
+        public void updateUser(int user_id,String nume,String prenume,String nrTelefon,String nrMobil,String email,String pozitie){
+        
+        User users = em.find(User.class, user_id);
+        users.setNume(nume);
+        users.setPrenume(prenume);
+        users.setNrTelefon(nrTelefon);
+        users.setNrMobil(nrMobil); 
+        users.setEmail(email);
+        users.setPozitie(pozitie);  
+    }
+        
+      public UserDetails findById(Integer userId){
+        User user=em.find(User.class,userId);
+        return new UserDetails(user.getId(),user.getNume(),
+                user.getPrenume(),user.getNrTelefon(),
+                user.getNrMobil(),user.getEmail(),user.getPozitie(),user.getUsername());
+    }  
 }

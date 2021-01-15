@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 <label for="username"><fmt:message key="username"/></label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="<fmt:message key="username"/>" value="${username}" disabled>
+                <input type="text" class="form-control" id="username" name="username" placeholder="<fmt:message key="username"/>" value="${username}" required>
                 <div class="invalid-feedback">
                     <fmt:message key="reqUsername"/>.
                 </div>
@@ -91,6 +91,7 @@
         </div>
         <input type="hidden" name="password" value="${password}" />
         <input type="hidden" name="aplicant_id" value="${aplicant.id}" />
+        <input type="hidden" name="username" value="${username}" />
         <button class="btn btn-primary btn-lg btn-block" type="submit"><fmt:message key="save"/></button>
     </form>
     <script>

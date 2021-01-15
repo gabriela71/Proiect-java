@@ -86,18 +86,31 @@ public class CreateUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String nume= request.getParameter("nume");
-        String prenume= request.getParameter("prenume");
-        String nrTelefon= request.getParameter("phone");
-        String nrMobil= request.getParameter("mobile");
-        String email= request.getParameter("email");
-        String positionName= request.getParameter("positionName");
+        int aplicantId= Integer.parseInt(request.getParameter("aplicant_id"));
+        String rol= request.getParameter("rol");
         String username= request.getParameter("username");
         String password= request.getParameter("password");
-        String rol= request.getParameter("rol");
-        int aplicantId= Integer.parseInt(request.getParameter("aplicant_id"));
         
-        System.out.println(username+" "+nume+" "+email+" "+positionName);
+        AplicantDetails aplicant = aplicantBean.findById(aplicantId);
+        
+        userBean.createUser(aplicant.getNume(),aplicant.getPrenume(), aplicant.getNrTelefon(), aplicant.getNrMobil(), 
+                aplicant.getEmail(), aplicant.getDenumire(), username, password);
+        
+        loginBean.createEntry(username, password, rol);
+        
+        Integer candidateId= aplicantBean.getCandidateId(aplicantId);
+        
+        //Mai intai sterge CV-ul si apoi candidatul
+        candidateBean.deleteCandidateById(candidateId);
+        
+       // String nume= request.getParameter("nume");
+      //  String prenume= request.getParameter("prenume");
+      //  String nrTelefon= request.getParameter("phone");
+      //  String nrMobil= request.getParameter("mobile");
+      //  String email= request.getParameter("email");
+      //  String positionName= request.getParameter("positionName");
+       
+    //    System.out.println(username+" "+nume+" "+email+" "+positionName);
         
         /*
         userBean.createUser(nume, prenume, nrTelefon, nrMobil, email, positionName, username, password);
@@ -109,6 +122,7 @@ public class CreateUser extends HttpServlet {
         candidateBean.deleteCandidateById(candidateId);*/
         
         //adauga trecere la lista utilizatori
+        response.sendRedirect(request.getContextPath() + "/User");
     }
 
     /**

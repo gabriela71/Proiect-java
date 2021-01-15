@@ -78,6 +78,18 @@ public class CandidateBean {
        
    }
    
+   public void DeleteCVCandidate(int candidate_id){
+       LOG.info("deleteCv");
+       
+       Candidate candidate=em.find(Candidate.class, candidate_id);
+       
+       CV cv=candidate.getCv();
+    //   cv.setFilename(filename);
+    //   cv.setFileType(fileType);
+    //   cv.setFileContent(fileContent);
+       
+   }
+   
     public CandidateDetails getLoggedUser(String usernameLogin) {
         LOG.info("getAllUsers");
         try {         
