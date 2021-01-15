@@ -63,6 +63,9 @@
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/CreateUser?id=${aplicant.id}" role="button"><fmt:message key="create"/></a>
                 </div>
+                <div>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Detalii?id=${aplicant.id}" role="button"><fmt:message key="details"/></a>
+                </div>
             </div>
         </c:forEach>
     </form>

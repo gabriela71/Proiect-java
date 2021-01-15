@@ -7,6 +7,7 @@ package com.project.jobs.ejb;
 
 import com.project.jobs.common.UserDetails;
 import com.project.jobs.entity.User;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -46,5 +47,55 @@ public class UserBean {
 
     }
     
+    public void createUser( String nume, String prenume,  String nrTelefon,  String nrMobil,  String email, String pozitie, String username, String password)
+    {
+        LOG.info("createUser");
+        User user= new User();
+        
+        user.setNume(nume);
+        user.setPrenume(prenume);
+        user.setNrTelefon(nrTelefon);
+        user.setNrMobil(nrMobil);
+        user.setEmail(email);
+        user.setPozitie(pozitie);
+        user.setUsername(username);
+        user.setPassword(password);
+        
+        em.persist(user);
+    }
 
+    //UTILIZATORI
+    public List<UserDetails> getAllUsers() 
+    {
+        LOG.info("getAllUsers");
+        try 
+        {
+            List<User> users = (List<User>) em.createQuery("SELECT u FROM User u ").getResultList();
+            return copyUsersToDetails(users);
+        } 
+        catch (Exception ex) 
+        {
+            throw new EJBException(ex);
+        }
+    }
+    
+    //COPIARE IN DETALII
+    private List<UserDetails> copyUsersToDetails(List<User> users)
+    {
+        List<UserDetails> detailsList= new ArrayList<>();
+        for(User user :users)
+        {
+            UserDetails userDetails= new UserDetails(user.getId(),
+                    user.getNume(),
+                    user.getPrenume(), 
+                    user.getNrTelefon(),
+                    user.getNrMobil(),
+                    user.getEmail(),
+                    user.getPozitie(),
+                    user.getUsername());
+            detailsList.add(userDetails);
+        }
+         
+        return detailsList;
+    }
 }

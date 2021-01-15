@@ -33,7 +33,7 @@ public class LoginBean {
         Login login = new Login();
         login.setUsername(username);
         login.setPassword(password);
-        login.setRol("candidat");
+        login.setRol(rol);
         
         em.persist(login);
     }

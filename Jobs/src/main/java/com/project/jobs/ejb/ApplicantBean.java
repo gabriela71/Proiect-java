@@ -44,7 +44,7 @@ public class ApplicantBean {
         }
     }
     
-    //DECIDE CE FEL DE CANDIDATI SUNT CDORITI
+    //DECIDE CE FEL DE CANDIDATI SUNT DORITI
     private List<AplicantDetails> copyAplicantiToDetails(List<Aplicanti> aplicanti, int caz)
     {
         List<AplicantDetails> detailsList= new ArrayList<>();

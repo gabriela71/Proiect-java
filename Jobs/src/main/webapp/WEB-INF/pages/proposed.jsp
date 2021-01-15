@@ -36,6 +36,9 @@
                 <div class="col-md-1">
                    <h6><fmt:message key="positionDepartment"/></h6>
                 </div>
+                <div class="col-md-1">
+                   <h6><fmt:message key="dataInterviu"/></h6>
+                </div>
         </div>
         <c:forEach var="aplicant" items="${aplicanti}" varStatus="status">  
             <div class="row">
@@ -63,8 +66,14 @@
                 <div class="col-md-1">
                    ${aplicant.departament} 
                 </div>
+                <div class="col-md-1">
+                   ${aplicant.dataInterviu} 
+                </div>
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Elect?id=${aplicant.id}" role="button"><fmt:message key="elect"/></a>
+                </div>
+                <div>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Detalii?id=${aplicant.id}" role="button"><fmt:message key="details"/></a>
                 </div>
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/UndoProposition?id=${aplicant.id}" role="button"><fmt:message key="undo"/></a>

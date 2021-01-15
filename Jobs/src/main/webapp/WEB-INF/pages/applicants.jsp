@@ -60,6 +60,10 @@
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Suggest?id=${aplicant.id}" role="button"><fmt:message key="suggest"/></a>
                 </div>
+                <div>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Detalii?id=${aplicant.id}" role="button"><fmt:message key="details"/></a>
+                </div>
+            </div>
         </c:forEach>
         <div class="row">
         <button class="btn btn-danger" type="submit"> <fmt:message key="delete"/> </button>

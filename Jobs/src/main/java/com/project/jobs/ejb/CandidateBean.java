@@ -157,5 +157,14 @@ public class CandidateBean {
                 candidate.getNrMobil(),candidate.getEmail(),candidate.getAddress());
     }
     
+    //STERGE CANDIDAT DUPA ID
+    public void deleteCandidateById(Integer id) {
+        
+        LOG.info("deleteCandidateById");
+        
+        Candidate candidate = em.find(Candidate.class,id);
+        em.remove(candidate);
+        
+    }
 }
 
