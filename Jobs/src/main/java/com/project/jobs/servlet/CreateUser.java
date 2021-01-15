@@ -6,6 +6,7 @@
 package com.project.jobs.servlet;
 
 import com.project.jobs.common.AplicantDetails;
+import com.project.jobs.common.UserDetails;
 import com.project.jobs.ejb.ApplicantBean;
 import com.project.jobs.ejb.CandidateBean;
 import com.project.jobs.ejb.I18n;
@@ -15,6 +16,7 @@ import com.project.jobs.util.PasswordUtil;
 import com.project.jobs.util.UsernameUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,10 +63,15 @@ public class CreateUser extends HttpServlet {
         AplicantDetails aplicant = aplicantBean.findById(aplicantId);
         request.setAttribute("aplicant", aplicant);
         
-        String username=UsernameUtil.createUsername(aplicant.getNume(), aplicant.getPrenume());
+        List<UserDetails> users= userBean.getAllUsers();
+        String username=UsernameUtil.createUsername(aplicant.getNume(), aplicant.getPrenume(),users);
+        request.setAttribute("username", username);
+        
+        String password= aplicantBean.getCandidatePassword(aplicantId);
+        request.setAttribute("password", password);
         
         request.setAttribute("language", i18n.getResourceBundle().getLocale());
-        request.getRequestDispatcher("/WEB-INF/pages/suggest.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/createUser.jsp").forward(request, response);
     }
 
     /**
@@ -84,21 +91,24 @@ public class CreateUser extends HttpServlet {
         String nrTelefon= request.getParameter("phone");
         String nrMobil= request.getParameter("mobile");
         String email= request.getParameter("email");
-        String pozitie= request.getParameter("positionName");
+        String positionName= request.getParameter("positionName");
         String username= request.getParameter("username");
         String password= request.getParameter("password");
         String rol= request.getParameter("rol");
         int aplicantId= Integer.parseInt(request.getParameter("aplicant_id"));
         
-        String passwordSha256=PasswordUtil.convertToSha256(password);
+        System.out.println(username+" "+nume+" "+email+" "+positionName);
         
-        userBean.createUser(nume, prenume, nrTelefon, nrMobil, email, pozitie, username, passwordSha256);
+        /*
+        userBean.createUser(nume, prenume, nrTelefon, nrMobil, email, positionName, username, password);
         
-        loginBean.createEntry(username, passwordSha256, rol);
+        loginBean.createEntry(username, password, rol);
         
-        candidateBean.deleteCandidateById(aplicantId);
+        Integer candidateId= aplicantBean.getCandidateId(aplicantId);
         
+        candidateBean.deleteCandidateById(candidateId);*/
         
+        //adauga trecere la lista utilizatori
     }
 
     /**

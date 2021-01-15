@@ -23,7 +23,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class UserBean {
 
-    private static final Logger LOG = Logger.getLogger(CandidateBean.class.getName());
+    private static final Logger LOG = Logger.getLogger(UserBean.class.getName());
 
     @PersistenceContext
     private EntityManager em;

@@ -133,7 +133,7 @@ public class CandidateBean {
         
         
         
-            private List<CandidateDetails> copyCandidatesToDetails(List<Candidate> candidat) {
+        private List<CandidateDetails> copyCandidatesToDetails(List<Candidate> candidat) {
         List<CandidateDetails> detailsList = new ArrayList<>();
         for (Candidate candidate : candidat) {
             CandidateDetails candidateDetails = new CandidateDetails(candidate.getId(),

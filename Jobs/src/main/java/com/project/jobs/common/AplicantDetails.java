@@ -15,7 +15,6 @@ import java.util.List;
 public class AplicantDetails {
     
     //din candidat
-    private Integer id;
     private String nume;
     private String prenume;
     private String nrTelefon;
@@ -27,6 +26,7 @@ public class AplicantDetails {
     private Date dataInterviu;
     private int propus;
     private int ales;
+    private Integer id;
     
     //din pozitie
     private String denumire;

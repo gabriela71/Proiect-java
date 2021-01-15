@@ -16,12 +16,13 @@ import javax.inject.Inject;
  */
 public class UsernameUtil {
    
-    @Inject
-    private UserBean userBean;
+   // @Inject
+  //  private UserBean userBean;
     
-    public static String createUsername(String nume, String prenume){
+    public static String createUsername(String nume, String prenume,List<UserDetails> users){
         
         String username;
+        String litera;
         if(nume.length()>5)
         {
             username=nume.substring(0, 5);
@@ -30,10 +31,19 @@ public class UsernameUtil {
         {
             username=nume;
         }
-        String litera= prenume.substring(prenume.length()-2,prenume.length()-1);
+        litera= prenume.substring(prenume.length()-1,prenume.length());
+        username+=litera;
         
-        
-       //List <UserDetails> users=userBean.getAllUsers();
+       
+        for(UserDetails user : users)
+        {
+            int i=1;
+            while(username.equals(user.getUsername()))
+            {
+                litera=prenume.substring(prenume.length()-i-1,prenume.length()-i);
+                username+=litera;
+            }
+        }
        
        return username;
         

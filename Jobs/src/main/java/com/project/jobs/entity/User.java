@@ -41,13 +41,13 @@ public class User implements Serializable {
     private String password;
     
    //@JsonbTransient ????????
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Collection<CandidateComments> cComments;
 
    @OneToMany(mappedBy = "user")
     private Collection<Position> position;
 
-   @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Collection<PositionComments> pComments;
    
    

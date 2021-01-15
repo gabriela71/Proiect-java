@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 <label for="nume"><fmt:message key="surname"/></label>
-                <input type="text" class="form-control" id="nume" name="nume" placeholder="<fmt:message key="surname"/>" value="${aplicant.nume}" required>
+                <input type="text" class="form-control" id="nume" name="nume" placeholder="<fmt:message key="surname"/>" value="${aplicant.nume}" disabled>
                 <div class="invalid-feedback">
                     <fmt:message key="reqNume"/>.
                 </div>
@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 <label for="prenume"><fmt:message key="forename"/></label>
-                <input type="text" class="form-control" id="prenume" name="prenume" placeholder="<fmt:message key="forename"/>" value="${aplicant.prenume}" required>
+                <input type="text" class="form-control" id="prenume" name="prenume" placeholder="<fmt:message key="forename"/>" value="${aplicant.prenume}" disabled>
                 <div class="invalid-feedback">
                     <fmt:message key="reqPrenume"/>.
                 </div>
@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 <label for="phone"><fmt:message key="phone"/></label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="<fmt:message key="phone"/>" value="${aplicant.nrTelefon}" required>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="<fmt:message key="phone"/>" value="${aplicant.nrTelefon}" disabled>
                 <div class="invalid-feedback">
                     <fmt:message key="reqPhone"/>.
                 </div>
@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 <label for="mobile"><fmt:message key="mobile"/></label>
-                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="<fmt:message key="mobile"/>" value="${aplicant.nrMobil}" required>
+                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="<fmt:message key="mobile"/>" value="${aplicant.nrMobil}" disabled>
                 <div class="invalid-feedback">
                     <fmt:message key="reqMobile"/>.
                 </div>
@@ -48,7 +48,7 @@
             <div class="row">
             <div class="col-md-8 mb-3">
                 <label for="email"><fmt:message key="email"/></label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="<fmt:message key="email"/>" value="${acaplicant.email}" required>
+                <input type="text" class="form-control" id="email" name="email" placeholder="<fmt:message key="email"/>" value="${acaplicant.email}" disabled>
                 <div class="invalid-feedback">
                     <fmt:message key="reqEmail"/>.
                 </div>
@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 <label for="positionName"><fmt:message key="positionName"/></label>
-                <input type="text" class="form-control" id="positionName" name="positionName" placeholder="<fmt:message key="positionName"/>" value="${acaplicant.denumire}" required>
+                <input type="text" class="form-control" id="positionName" name="positionName" placeholder="<fmt:message key="positionName"/>" value="${acaplicant.denumire}" disabled>
                 <div class="invalid-feedback">
                     <fmt:message key="reqPosition"/>.
                 </div>
@@ -66,27 +66,9 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 <label for="username"><fmt:message key="username"/></label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="<fmt:message key="username"/>" value="?" required>
+                <input type="text" class="form-control" id="username" name="username" placeholder="<fmt:message key="username"/>" value="${username}" disabled>
                 <div class="invalid-feedback">
                     <fmt:message key="reqUsername"/>.
-                </div>
-            </div>    
-        </div>
-        <div class="row">
-            <div class="col-md-8 mb-3">
-                <label for="password"><fmt:message key="password"/></label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                    <fmt:message key="reqPassword"/>.
-                </div>
-            </div>    
-        </div>
-        <div class="row">
-            <div class="col-md-8 mb-3">
-                <label for="password"><fmt:message key="confirmpassword"/></label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                    <fmt:message key="reqPassword"/>.
                 </div>
             </div>    
         </div>
@@ -107,6 +89,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" name="password" value="${password}" />
         <input type="hidden" name="aplicant_id" value="${aplicant.id}" />
         <button class="btn btn-primary btn-lg btn-block" type="submit"><fmt:message key="save"/></button>
     </form>

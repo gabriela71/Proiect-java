@@ -55,7 +55,7 @@ public class ApplicantBean {
                 case 1:
                     if(aplicant.getPropus()==0 && aplicant.getAles()==0)
                     {
-                    AplicantDetails aplicantDetails=new AplicantDetails(aplicant.getCandidate().getId(),
+                    AplicantDetails aplicantDetails=new AplicantDetails(aplicant.getId(),
                             aplicant.getCandidate().getNume(),
                             aplicant.getCandidate().getPrenume(),
                             aplicant.getCandidate().getNrTelefon(),
@@ -73,7 +73,7 @@ public class ApplicantBean {
                 case 2:
                     if(aplicant.getPropus()==1 && aplicant.getAles()==0)
                     {
-                    AplicantDetails aplicantDetails=new AplicantDetails(aplicant.getCandidate().getId(),
+                    AplicantDetails aplicantDetails=new AplicantDetails(aplicant.getId(),
                             aplicant.getCandidate().getNume(),
                             aplicant.getCandidate().getPrenume(),
                             aplicant.getCandidate().getNrTelefon(),
@@ -91,7 +91,7 @@ public class ApplicantBean {
                 case 3:
                     if(aplicant.getPropus()==1 && aplicant.getAles()==1)
                     {
-                    AplicantDetails aplicantDetails=new AplicantDetails(aplicant.getCandidate().getId(),
+                    AplicantDetails aplicantDetails=new AplicantDetails(aplicant.getId(),
                             aplicant.getCandidate().getNume(),
                             aplicant.getCandidate().getPrenume(),
                             aplicant.getCandidate().getNrTelefon(),
@@ -115,7 +115,7 @@ public class ApplicantBean {
     public AplicantDetails findById(Integer aplicantId)
     {
         Aplicanti aplicant = em.find(Aplicanti.class, aplicantId);
-        return new AplicantDetails(aplicant.getCandidate().getId(),
+        return new AplicantDetails(aplicant.getId(),
                     aplicant.getCandidate().getNume(),
                     aplicant.getCandidate().getPrenume(),
                     aplicant.getCandidate().getNrTelefon(),
@@ -137,7 +137,6 @@ public class ApplicantBean {
         Aplicanti aplicant = em.find(Aplicanti.class, aplicantId);
         aplicant.setDataInterviu(dataInterviu);
         aplicant.setPropus(1);
-       // em.persist(aplicant);
     }
     
     //STERGE CANDIDATI DUPA ID
@@ -159,7 +158,6 @@ public class ApplicantBean {
         
         Aplicanti aplicant = em.find(Aplicanti.class, aplicantId);
         aplicant.setAles(1);
-        //em.persist(aplicant);
     }
     
     //ANULATI PROPUNEREA
@@ -170,6 +168,29 @@ public class ApplicantBean {
         Aplicanti aplicant = em.find(Aplicanti.class, aplicantId);
         aplicant.setPropus(0);
         aplicant.setDataInterviu(null);
-        //em.persist(aplicant);
+    }
+    
+    //OBTINE ID CANDIDAT
+    public Integer getCandidateId(Integer aplicantId) 
+    {
+        LOG.info("getCandidateId");
+        
+        Integer id;
+        
+        Aplicanti aplicant = em.find(Aplicanti.class, aplicantId);
+        id=aplicant.getCandidate().getId();
+        return id;
+    }
+    
+    //OBTINE PAROLA CANDIDAT
+    public String getCandidatePassword(Integer aplicantId) 
+    {
+        LOG.info("getCandidatePassword");
+        
+        String password;
+        
+        Aplicanti aplicant = em.find(Aplicanti.class, aplicantId);
+        password= aplicant.getCandidate().getPassword();
+        return password;
     }
 }
