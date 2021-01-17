@@ -4,30 +4,32 @@
   <security-role-mapping>
     <role-name>AdminRole</role-name>
     <group-name>ADMIN</group-name>
+    <group-name>DG</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>DirectorGeneralRole</role-name>
     <group-name>DG</group-name>
   </security-role-mapping>
   <security-role-mapping>
-    <role-name>DirectorDepartamentRole</role-name>
-    <group-name>DD</group-name>
-  </security-role-mapping>
-  <security-role-mapping>
-    <role-name>DirectorHRRole</role-name>
+    <role-name>PositionRole</role-name>
     <group-name>HR</group-name>
+    <group-name>DD</group-name>
+    <group-name>DG</group-name>
+    <group-name>RECRUITER</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>RecruiterRole</role-name>
     <group-name>RECRUITER</group-name>
+    <group-name>DG</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>CandidateRole</role-name>
     <group-name>CANDIDATE</group-name>
-  </security-role-mapping>
-  <security-role-mapping>
-    <role-name>UserRole</role-name>
-    <group-name>CANDIDATE</group-name>
+    <group-name>DG</group-name>
+    <group-name>ADMIN</group-name>
+    <group-name>DD</group-name>
+    <group-name>HR</group-name>
+    <group-name>RECRUITER</group-name>
   </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>

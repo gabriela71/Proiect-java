@@ -19,34 +19,58 @@
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/Jobs">Jobs</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
-            </li> 
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/PendingPositions">Pending Positions</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/InactivePositions">Inactive Positions</a>
-            </li> 
-
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/CommentsMenu">Comments</a>
-            </li> 
-            <li class="nav-item ${activePage eq 'Applicants' ? ' active' : ''}">
-                <a class="nav-link" href="${pageContext.request.contextPath}/Applicants">Applicants</a>
-            </li>
-            <li class="nav-item ${activePage eq 'Proposed' ? ' active' : ''}">
-                <a class="nav-link" href="${pageContext.request.contextPath}/Proposed">Proposed Candidate</a>
-            </li>
-            <li class="nav-item ${activePage eq 'Choose' ? ' active' : ''}">
-                <a class="nav-link" href="${pageContext.request.contextPath}/Choose">Elected Candidate</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/CandidateProfile">My Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/User">Users</a>
-            </li>
+            
+            <c:if test="${pageContext.request.isUserInRole('PositionRole')}">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
+                </li> 
+            </c:if>
+                
+            <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRole')}">    
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/PendingPositions">Pending Positions</a>
+                </li>
+            </c:if>
+                
+            <c:if test="${pageContext.request.isUserInRole('PositionRole')}"> 
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/InactivePositions">Inactive Positions</a>
+                </li> 
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/CommentsMenu">Comments</a>
+                </li> 
+            </c:if>
+                
+            <c:if test="${pageContext.request.isUserInRole('RecruiterRole')}">
+                <li class="nav-item ${activePage eq 'Applicants' ? ' active' : ''}">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/Applicants">Applicants</a>
+                </li>
+            </c:if>
+                
+            <c:if test="${pageContext.request.isUserInRole('PositionRole')}">
+                <li class="nav-item ${activePage eq 'Proposed' ? ' active' : ''}">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/Proposed">Proposed Candidate</a>
+                </li>
+            </c:if>
+                
+            <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+                <li class="nav-item ${activePage eq 'Choose' ? ' active' : ''}">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/Choose">Elected Candidate</a>
+                </li>
+            </c:if>
+                
+            <c:if test="${pageContext.request.isUserInRole('CandidateRole')}">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/CandidateProfile">My Profile</a>
+                </li>
+            </c:if>
+                
+            <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/User">Users</a>
+                </li>
+            </c:if>
         </ul>
             
         <ul class="navbar-nav m1-auto">

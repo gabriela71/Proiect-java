@@ -30,8 +30,10 @@
                         <p class="card-text mb-auto ">${position.responsabilitati}</p>                                            
                         <br>
                         <p class="card-text mb-auto">${position.beneficii}</p>                                             
-                        <a class="btn btn-dark btn-lg btn-block" href="${pageContext.request.contextPath}/Position/Update?id=${position.id}&pagina=Positions" role="button"><fmt:message key="editPosition"/></a>                        
-                        <button class="btn btn-danger  btn-lg btn-block" type="submit" name="position_id" value="${position.id}"><fmt:message key="closePosition"/></button>                       
+                        <a class="btn btn-dark btn-lg btn-block" href="${pageContext.request.contextPath}/Position/Update?id=${position.id}&pagina=Positions" role="button"><fmt:message key="editPosition"/></a>  
+                        <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRole')}">
+                            <button class="btn btn-danger  btn-lg btn-block" type="submit" name="position_id" value="${position.id}"><fmt:message key="closePosition"/></button> 
+                        </c:if>
                     </div>
                 </div>
             </div>

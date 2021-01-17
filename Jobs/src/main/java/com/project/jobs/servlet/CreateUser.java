@@ -16,6 +16,7 @@ import com.project.jobs.util.PasswordUtil;
 import com.project.jobs.util.UsernameUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -100,7 +101,11 @@ public class CreateUser extends HttpServlet {
         
         Integer candidateId= aplicantBean.getCandidateId(aplicantId);
         
-        //Mai intai sterge CV-ul si apoi candidatul
+        List<Integer> aplicantIds= new ArrayList<>();
+        aplicantIds.add(aplicantId);
+        
+        aplicantBean.deleteApplicantsByIds(aplicantIds);
+        candidateBean.DeleteCVCandidate(candidateId);
         candidateBean.deleteCandidateById(candidateId);
         
        // String nume= request.getParameter("nume");

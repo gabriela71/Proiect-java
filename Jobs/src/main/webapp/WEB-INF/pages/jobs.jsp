@@ -29,8 +29,10 @@
                         <div class="mb-1 text-muted"><fmt:message key="availableJobs"/>: ${position.nrPersoaneCautate-position.nrPersoaneAprobate}</div>
                         <p class="card-text mb-auto ">${position.responsabilitati}</p>                                            
                         <br>
-                        <p class="card-text mb-auto">${position.beneficii}</p>                                             
-                        <button class="btn btn-primary  btn-lg btn-block" type="submit" name="position_id" value="${position.id}"><fmt:message key="apply"/></button>                       
+                        <p class="card-text mb-auto">${position.beneficii}</p>      
+                        <c:if test="${pageContext.request.isUserInRole('CandidateRole')}">
+                            <button class="btn btn-primary  btn-lg btn-block" type="submit" name="position_id" value="${position.id}"><fmt:message key="apply"/></button>                       
+                        </c:if>
                     </div>
                 </div>
             </div>          

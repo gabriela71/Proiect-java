@@ -83,10 +83,10 @@ public class CandidateBean {
        
        Candidate candidate=em.find(Candidate.class, candidate_id);
        
+       int cv_id=candidate.getCv().getId();
        CV cv=candidate.getCv();
-    //   cv.setFilename(filename);
-    //   cv.setFileType(fileType);
-    //   cv.setFileContent(fileContent);
+       
+       em.remove(cv);
        
    }
    
