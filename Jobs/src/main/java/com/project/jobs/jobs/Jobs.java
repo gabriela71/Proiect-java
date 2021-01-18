@@ -5,6 +5,7 @@
  */
 package com.project.jobs.jobs;
 
+import com.project.jobs.common.CandidateDetails;
 import com.project.jobs.common.PositionDetailss;
 import com.project.jobs.ejb.AplicantiBean;
 import com.project.jobs.ejb.CandidateBean;
@@ -76,15 +77,10 @@ public class Jobs extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //CandidateDetails loggedCandidate=candidateBean.getLoggedUser("test.gmail");
-        //CvDetails cv = candidateBean.findCvByCandidateUsername("test");
-
-        //int positionId=Integer.parseInt(request.getParameter("position_id"));
-        //int aplicantId=loggedCandidate.getId();
-        //aplicantiBean.addAplicant(aplicantId, positionId);
-        
-        SendEmail send=new SendEmail();
-        send.sendEmail();
+        CandidateDetails loggedCandidate=candidateBean.getLoggedUser(request.getRemoteUser());
+      
+        SendEmail email=new SendEmail();
+        email.sendEmailApplyPosition(loggedCandidate);
         
         response.sendRedirect(request.getContextPath() + "/Jobs");
     }

@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-md-1">
                     <input type="checkbox" name="aplicant_ids" value="${aplicant.id}"/>
-                </div>
+                </div>           
                 <div class="col-md-1">
                    ${aplicant.nume} 
                 </div>
@@ -62,6 +62,9 @@
                 </div>
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Detalii?id=${aplicant.id}" role="button"><fmt:message key="details"/></a>
+                </div>
+                <div>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/ViewCv?id=${aplicant.username}" role="button"><fmt:message key="viewCV"/></a>           
                 </div>
             </div>
         </c:forEach>
