@@ -8,6 +8,7 @@ package com.project.jobs.servlet;
 import com.project.jobs.common.PositionDetailss;
 import com.project.jobs.common.UserDetails;
 import com.project.jobs.ejb.CommentsPositionBean;
+import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.PositionBean;
 import com.project.jobs.ejb.UserBean;
 import java.io.IOException;
@@ -34,7 +35,9 @@ public class CommentsPosition extends HttpServlet {
     UserBean userBean;
     @Inject
     PositionBean positionBean;
-     private static final Logger LOG = Logger.getLogger(CommentsPositionBean.class.getName());
+    @Inject
+    I18n i18n;
+    private static final Logger LOG = Logger.getLogger(CommentsPositionBean.class.getName());
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -48,7 +51,7 @@ public class CommentsPosition extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        request.setAttribute("language", i18n.getResourceBundle().getLocale());
         int id_pozitie = Integer.parseInt(request.getParameter("id_pozitie"));
         PositionDetailss positionDetailss = positionBean.findById(id_pozitie);
         UserDetails userDetails = userBean.getLoggedUser(request.getRemoteUser());

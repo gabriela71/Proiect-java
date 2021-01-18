@@ -7,6 +7,11 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+ <fmt:setLocale value="${language}" />
+ <fmt:setBundle basename="com.project.i18n.language" />
+
 <t:pageTemplate pageTitle="Comments">
     <form method="POST" action="${pageContext.request.contextPath}/Comments Position">
         <br>
@@ -20,7 +25,7 @@
                             <h3 class="mb-0">
                                 <div class="text-dark" >${position.denumire}</div>
                             </h3>         
-                            <a class="btn btn-dark btn-lg btn-block" href="${pageContext.request.contextPath}/CommentsPosition?id_pozitie=${position.id}&?id_user=${user.id}" role="button">Adauga comentariu</a>                                     
+                                <a class="btn btn-dark btn-lg btn-block" href="${pageContext.request.contextPath}/CommentsPosition?id_pozitie=${position.id}&?id_user=${user.id}" role="button"><fmt:message key="buttonAddComments"/></a>                                     
                         </div>
                     </div>
                 </div>

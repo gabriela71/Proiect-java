@@ -11,6 +11,7 @@ import com.project.jobs.common.UserDetails;
 import com.project.jobs.ejb.CandidateBean;
 import com.project.jobs.ejb.CommentsCandidateBean;
 import com.project.jobs.ejb.CommentsPositionBean;
+import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.PositionBean;
 import com.project.jobs.ejb.UserBean;
 import java.io.IOException;
@@ -35,10 +36,13 @@ public class AddCommentsCandidate extends HttpServlet {
     UserBean userBean;
     @Inject
     PositionBean positionBean;
-   @Inject
+    @Inject
     CandidateBean candidateBean;
-   @Inject
+    @Inject
     CommentsCandidateBean commentsCandidateBean;
+    @Inject
+    I18n i18n;
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -51,6 +55,7 @@ public class AddCommentsCandidate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("language", i18n.getResourceBundle().getLocale());
         int id_candidate = Integer.parseInt(request.getParameter("id_candidate"));
         CandidateDetails candidateDetails = candidateBean.findById(id_candidate);
         UserDetails userDetails = userBean.getLoggedUser(request.getRemoteUser());

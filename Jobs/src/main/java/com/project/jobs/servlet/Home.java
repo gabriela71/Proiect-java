@@ -5,14 +5,9 @@
  */
 package com.project.jobs.servlet;
 
-import com.project.jobs.common.CandidateDetails;
-import com.project.jobs.common.UserDetails;
-import com.project.jobs.ejb.CandidateBean;
 import com.project.jobs.ejb.I18n;
-import com.project.jobs.ejb.UserBean;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,16 +19,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Andrei
  */
-@WebServlet(name = "CommentsCandidate", urlPatterns = {"/CommentsCandidate"})
-public class CommentsCandidate extends HttpServlet {
+@WebServlet(name = "Home", urlPatterns = {"/Home"})
+public class Home extends HttpServlet {
 
-    @Inject
-    UserBean userBean;
-    @Inject
-    CandidateBean candidateBean;
-    @Inject
-    I18n i18n;
-
+ 
+@Inject
+I18n i18n;
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -46,12 +37,8 @@ public class CommentsCandidate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("language", i18n.getResourceBundle().getLocale());
-        List<CandidateDetails> candidate = candidateBean.getAllCandidates();
-        UserDetails loggedUser = userBean.getLoggedUser(request.getRemoteUser());
-        request.setAttribute("candidate", candidate);
-        request.setAttribute("user", loggedUser);
-        request.getRequestDispatcher("/WEB-INF/pages/commentsCandidate.jsp").forward(request, response);
+           request.setAttribute("language", i18n.getResourceBundle().getLocale());
+           request.getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(request, response);
     }
 
     /**
