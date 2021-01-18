@@ -9,7 +9,6 @@ import com.project.jobs.common.CandidateDetails;
 import com.project.jobs.common.CvDetails;
 import com.project.jobs.entity.CV;
 import com.project.jobs.entity.Candidate;
-import com.project.jobs.servlet.Register;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.project.jobs.servlet.position;
+package com.project.jobs.servlet;
 
-import com.project.jobs.ejb.I18n;
-import com.project.jobs.ejb.PositionBean;
-import com.project.sendemail.SendEmail;
+import com.project.jobs.common.CvDetails;
+import com.project.jobs.ejb.CandidateBean;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,13 +20,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alex
  */
-@WebServlet(name = "AddPosition", urlPatterns = {"/Position/Create"})
-public class AddPosition extends HttpServlet {
+@WebServlet(name = "CvFile", urlPatterns = {"/CvFile"})
+public class CvFile extends HttpServlet {
 
-   @Inject
-   PositionBean positionBean;
-   @Inject
-   I18n i18n;
+    @Inject
+    CandidateBean candidateBean;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -40,8 +38,17 @@ public class AddPosition extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("language", i18n.getResourceBundle().getLocale());
-        request.getRequestDispatcher("/WEB-INF/pages/addPosition.jsp").forward(request, response);    
+        String username=request.getParameter("id");
+        CvDetails cv = candidateBean.findCvByCandidateUsername(username);
+        
+        if(cv!=null)
+        {
+        response.setContentType(cv.getFileType());
+        response.setContentLength(cv.getFileContent().length);
+        response.getOutputStream().write(cv.getFileContent());
+        }else{
+        response.sendError(HttpServletResponse.SC_NOT_FOUND);  //404
+        }
     }
 
     /**
@@ -56,19 +63,6 @@ public class AddPosition extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String denumire=request.getParameter("denumire");
-        String departament=request.getParameter("departament");
-        String cerinte=request.getParameter("cerinte");
-        String responsabilitati=request.getParameter("responsabilitati");
-        String beneficii=request.getParameter("beneficii");
-        int nrPersoaneCautate=Integer.parseInt(request.getParameter("nrPersoaneCautate"));
-        
-        positionBean.addPosition(denumire, departament, cerinte, responsabilitati, beneficii, nrPersoaneCautate);
-        
-        SendEmail email=new SendEmail();
-        email.sendEmailAddPosition(request.getRemoteUser());
-        
-        response.sendRedirect(request.getContextPath()+"/Positions");
     }
 
     /**

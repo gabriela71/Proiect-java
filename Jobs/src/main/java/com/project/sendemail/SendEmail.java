@@ -9,6 +9,7 @@ package com.project.sendemail;
  *
  * @author Alex
  */
+import com.project.jobs.common.CandidateDetails;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -35,7 +36,7 @@ public class SendEmail {
     final String username = "jobsrecruiting.project@gmail.com";
     final String password = "recruitingjobs157A";
     
-    public void sendEmail() {
+    public void sendEmailApplyPosition(CandidateDetails loggedCandidate) {
         
         // Get system properties
         Properties properties = System.getProperties();
@@ -45,14 +46,8 @@ public class SendEmail {
         properties.put("mail.smtp.port", "465");
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
-
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         
-
-       
-//        properties.put("mail.smtp.host", "smtp.gmail.com");
-//        properties.put("mail.smtp.port", "587");
-//        properties.put("mail.smtp.auth", "true");
-//        properties.put("mail.smtp.starttls.enable", "true"); //TLS
 
         // Get the Session object.// and pass username and password
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
@@ -64,7 +59,8 @@ public class SendEmail {
             }
 
         });
-        session.setDebug(true);
+              
+        //session.setDebug(true);
         try {
             // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
@@ -79,36 +75,65 @@ public class SendEmail {
             message.setSubject("Aplicare pozitie");
 
             // Now set the actual message
-            //message.setText(loggedCandidate.getNume()+" "+loggedCandidate.getPrenume()+" a aplicat pentru o functie");
-            Multipart multipart = new MimeMultipart();
-            //MimeBodyPart attachmentPart = new MimeBodyPart();
-            MimeBodyPart textPart = new MimeBodyPart();
+            
+            message.setText(loggedCandidate.getNume()+" "+loggedCandidate.getPrenume()+" a aplicat pentru o pozitie");
 
-//            byte[] bytes = cv.getFileContent();
-//
-//            try {
-//                File f = new File(cv.getFilename() + ".pdf"); //eroare
-//                try (FileOutputStream fos = new FileOutputStream(f)) {
-//                    fos.write(bytes);
-//                    fos.flush();
-//                } catch (IOException i) {
-//                    //eroare
-//                }
-//                attachmentPart.attachFile(f);
-//            } catch (IOException e) {
-//                //eroare
-//            }
-            textPart.setText("Text de proba");
-
-            //multipart.addBodyPart(attachmentPart);
-            multipart.addBodyPart(textPart);
-
-            message.setContent(multipart);
 
             Transport.send(message);
 
         } catch (MessagingException mex) {
         }
+    }
+    
+    public void sendEmailAddPosition(String userUsername){
+        
+        // Get system properties
+        Properties properties = System.getProperties();
+
+        // Setup mail server     
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        
+
+        // Get the Session object.// and pass username and password
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+
+                return new PasswordAuthentication(username, password);
+
+            }
+
+        });
+              
+        //session.setDebug(true);
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            // Set Subject: header field
+            message.setSubject("Pozitie in curs de aprobare");
+
+            // Now set the actual message
+            
+            message.setText(userUsername+" a adaugat o noua pozitie");
+
+
+            Transport.send(message);
+
+        } catch (MessagingException mex) {
+        }
+        
+        
     }
 
 }
