@@ -8,7 +8,7 @@
 
 
 <nav class="navbar navbar-expand-md navbar-dark bg-primary  ">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}">Jobs</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -16,7 +16,9 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ${activePage eq 'Register' ? ' active' : ''}">
-                <a class="nav-link" href="${pageContext.request.contextPath}/about.jsp"><fmt:message key="about"/></a>
+
+                <a class="nav-link" href="${pageContext.request.contextPath}/About"><fmt:message key="about"/></a>
+
             </li>
 
             <c:choose>

@@ -9,6 +9,7 @@ import com.project.jobs.common.CandidateDetails;
 import com.project.jobs.common.PositionDetailss;
 import com.project.jobs.common.UserDetails;
 import com.project.jobs.ejb.CandidateBean;
+import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.PositionBean;
 import com.project.jobs.ejb.UserBean;
 import java.io.IOException;
@@ -28,13 +29,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Andrei
  */
-@ServletSecurity
-        (
-            value=@HttpConstraint
-            (
-            rolesAllowed={"PositionRole"}
-            )
+@ServletSecurity(
+        value = @HttpConstraint(
+                rolesAllowed = {"PositionRole"}
         )
+)
 @WebServlet(name = "Comments", urlPatterns = {"/Comments"})
 public class Comments extends HttpServlet {
 
@@ -43,6 +42,8 @@ public class Comments extends HttpServlet {
     PositionBean positionBean;
     @Inject
     UserBean userBean;
+    @Inject
+    I18n i18n;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -56,6 +57,7 @@ public class Comments extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("language", i18n.getResourceBundle().getLocale());
         List<PositionDetailss> positions = positionBean.getActivePositions();
         UserDetails loggedUser = userBean.getLoggedUser(request.getRemoteUser());
         request.setAttribute("positions", positions);
@@ -74,7 +76,7 @@ public class Comments extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**

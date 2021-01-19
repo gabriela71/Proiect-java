@@ -7,6 +7,7 @@
  <fmt:setBundle basename="com.project.i18n.language" />
 
 <t:pageTemplate pageTitle="Register">
+    
     <h1><fmt:message key="register"/></h1>
 
     <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data"
@@ -85,17 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="password">Confirm Password</label>
-                <input type="password" class="form-control" id="confirm_password" placeholder=""  required name="confirm_password">
-                <div class="invalid-feedback">
-                    Password is required.
-                </div>
-            </div>
-          
-               
-        </div>
+
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="cv"><fmt:message key="CV"/></label>
@@ -111,31 +102,7 @@
     <button class="btn btn-primary btn-lg btn-block" type="submit"><fmt:message key="submit"/></button>
 </form>
 <script>
-           /*     function checkPassword(form) { 
-                password = form.password.value; 
-                confirm_password = form.confirm_password.value; 
-  
-                // If password not entered 
-                if (password == '') 
-                    alert ("Please enter Password"); 
-                      
-                // If confirm password not entered 
-                else if (confirm_password == '') 
-                    alert ("Please enter confirm password"); 
-                      
-                // If Not same return False.     
-                else if (password != confirm_password) { 
-                    alert ("\nPassword did not match: Please try again...") 
-                    return false; 
-                } 
-  
-                // If same return True. 
-                else{ 
-                    alert("Password Match!") 
-                    return true; 
-                } 
-            }
-            */
+
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
         'use strict'
@@ -147,22 +114,7 @@
                 document.getElementById('submit').disabled = true;
             }
         }*/
-        
-                    // Function to check Whether both passwords 
-            // is same or not. 
-  /*   $(function () {
-        $("#btnSubmit").click(function () {
-            var password = $("#txtPassword").val();
-            var confirm_password = $("#txtConfirmPassword").val();
-            if (password != confirm_password) {
-                alert("Passwords do not match.");
-                return false;
-            }
-            return true;
-        });
-    });
-         * 
-   */
+
         window.addEventListener('load', function () {
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
             var forms = document.getElementsByClassName('needs-validation')
