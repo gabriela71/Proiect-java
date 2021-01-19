@@ -7,6 +7,8 @@ package com.project.jobs.ejb;
 
 import com.project.jobs.common.AplicantDetails;
 import com.project.jobs.entity.Aplicanti;
+import com.project.jobs.entity.Candidate;
+import com.project.jobs.entity.Position;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -28,6 +30,8 @@ public class ApplicantBean {
     
     @PersistenceContext
     private EntityManager em;
+    
+   
     
     //APLICANTI
     public List<AplicantDetails> getAllApplicants(int caz) 
@@ -192,5 +196,21 @@ public class ApplicantBean {
         Aplicanti aplicant = em.find(Aplicanti.class, aplicantId);
         password= aplicant.getCandidate().getPassword();
         return password;
+    }
+    
+    public void createApplicant(int id_pozitie, int id_candidat){
+        
+        Aplicanti aplicant = new Aplicanti();
+        Candidate candidate = em.find(Candidate.class, id_candidat);
+        Position position = em.find(Position.class,id_pozitie);
+        aplicant.setCandidate(candidate);
+        aplicant.setPosition(position);
+        aplicant.setAles(0);
+        aplicant.setConfirmat(0);
+        aplicant.setPropus(0);
+        
+        em.persist(aplicant);
+        
+        
     }
 }

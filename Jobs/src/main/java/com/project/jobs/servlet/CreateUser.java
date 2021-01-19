@@ -97,6 +97,7 @@ public class CreateUser extends HttpServlet {
         userBean.createUser(aplicant.getNume(),aplicant.getPrenume(), aplicant.getNrTelefon(), aplicant.getNrMobil(), 
                 aplicant.getEmail(), aplicant.getDenumire(), username, password);
         
+        loginBean.deleteEntryByUsername(username);
         loginBean.createEntry(username, password, rol);
         
         Integer candidateId= aplicantBean.getCandidateId(aplicantId);
@@ -108,25 +109,7 @@ public class CreateUser extends HttpServlet {
         candidateBean.DeleteCVCandidate(candidateId);
         candidateBean.deleteCandidateById(candidateId);
         
-       // String nume= request.getParameter("nume");
-      //  String prenume= request.getParameter("prenume");
-      //  String nrTelefon= request.getParameter("phone");
-      //  String nrMobil= request.getParameter("mobile");
-      //  String email= request.getParameter("email");
-      //  String positionName= request.getParameter("positionName");
-       
-    //    System.out.println(username+" "+nume+" "+email+" "+positionName);
         
-        /*
-        userBean.createUser(nume, prenume, nrTelefon, nrMobil, email, positionName, username, password);
-        
-        loginBean.createEntry(username, password, rol);
-        
-        Integer candidateId= aplicantBean.getCandidateId(aplicantId);
-        
-        candidateBean.deleteCandidateById(candidateId);*/
-        
-        //adauga trecere la lista utilizatori
         response.sendRedirect(request.getContextPath() + "/User");
     }
 

@@ -7,7 +7,6 @@ package com.project.jobs.servlet;
 
 import com.project.jobs.ejb.ApplicantBean;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

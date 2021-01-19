@@ -30,7 +30,7 @@
                         <p class="card-text mb-auto ">${position.responsabilitati}</p>                                            
                         <br>
                         <p class="card-text mb-auto">${position.beneficii}</p>      
-                        <c:if test="${pageContext.request.isUserInRole('CandidateRole')}">
+                        <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
                             <button class="btn btn-primary  btn-lg btn-block" type="submit" name="position_id" value="${position.id}"><fmt:message key="apply"/></button>                       
                         </c:if>            
                     </div>

@@ -9,7 +9,6 @@ import com.project.jobs.common.UserDetails;
 import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.UserBean;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;

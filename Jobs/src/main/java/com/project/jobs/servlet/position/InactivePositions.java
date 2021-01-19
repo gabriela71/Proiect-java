@@ -9,7 +9,6 @@ import com.project.jobs.common.PositionDetailss;
 import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.PositionBean;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;

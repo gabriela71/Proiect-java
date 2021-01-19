@@ -3,8 +3,8 @@
 
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
- <fmt:setLocale value="${language}" />
- <fmt:setBundle basename="com.project.i18n.language" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="com.project.i18n.language" />
 
 
 <nav class="navbar navbar-expand-md navbar-dark bg-primary  ">
@@ -18,74 +18,80 @@
             <li class="nav-item ${activePage eq 'Register' ? ' active' : ''}">
                 <a class="nav-link" href="${pageContext.request.contextPath}/about.jsp"><fmt:message key="about"/></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/Register"><fmt:message key="register"/></a>
-            </li>
+
+            <c:choose>
+                <c:when test="${pageContext.request.getRemoteUser()==null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Register"><fmt:message key="register"/></a>
+                    </li>
+                </c:when>
+            </c:choose>
+
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/Jobs"><fmt:message key="jobs"/></a>
             </li>
-            
+
             <c:if test="${pageContext.request.isUserInRole('PositionRole')}">
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/Positions"><fmt:message key="position"/></a>
                 </li> 
             </c:if>
-                
+
             <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRole')}">    
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/PendingPositions"><fmt:message key="pendingPosition"/></a>
                 </li>
             </c:if>
-                
+
             <c:if test="${pageContext.request.isUserInRole('PositionRole')}"> 
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/InactivePositions"><fmt:message key="inactivePosition"/></a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/InactivePositions"><fmt:message key="inactivePositions"/></a>
                 </li> 
-            
+
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/CommentsMenu"><fmt:message key="comments"/></a>
                 </li> 
             </c:if>
-                
+
             <c:if test="${pageContext.request.isUserInRole('RecruiterRole')}">
                 <li class="nav-item ${activePage eq 'Applicants' ? ' active' : ''}">
                     <a class="nav-link" href="${pageContext.request.contextPath}/Applicants"><fmt:message key="applicants"/></a>
                 </li>
             </c:if>
-                
+
             <c:if test="${pageContext.request.isUserInRole('PositionRole')}">
                 <li class="nav-item ${activePage eq 'Proposed' ? ' active' : ''}">
                     <a class="nav-link" href="${pageContext.request.contextPath}/Proposed"><fmt:message key="proposed"/></a>
                 </li>
             </c:if>
-                
+
             <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                 <li class="nav-item ${activePage eq 'Choose' ? ' active' : ''}">
                     <a class="nav-link" href="${pageContext.request.contextPath}/Choose"><fmt:message key="elected"/></a>
                 </li>
             </c:if>
-                
-            <c:if test="${pageContext.request.isUserInRole('CandidateRole')}">
+
+            <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/CandidateProfile"><fmt:message key="profile"/></a>
                 </li>
             </c:if>
-                
+
             <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/User"><fmt:message key="users"/></a>
                 </li>
             </c:if>
         </ul>
-            
+
         <ul class="navbar-nav m1-auto">
-            
+
             <form method="POST" action="${pageContext.request.contextPath}/ChangeLanguage">
                 <select id="language" name="language" onchange="submit()">                
-                 <option value="en" ${language eq 'en' ? ' selected' : ''}>English</option>
-                 <option value="ro" ${language eq 'ro' ? ' selected' : ''}>Romanian</option>
-                 <option value="de" ${language eq 'de' ? ' selected' : ''}>German</option>
-             </select>
+                    <option value="en" ${language eq 'en' ? ' selected' : ''}>English</option>
+                    <option value="ro" ${language eq 'ro' ? ' selected' : ''}>Romanian</option>
+                    <option value="de" ${language eq 'de' ? ' selected' : ''}>German</option>
+                </select>
             </form>
 
             <li class="nav-item">

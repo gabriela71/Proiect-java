@@ -72,7 +72,7 @@ public class Register extends HttpServlet {
         String username = request.getParameter("username");
         String address = request.getParameter("address");
         String password = request.getParameter("password");
-        String rol = "CANDIDAT";
+        String rol = "CANDIDATE";
         
         String passwordSha256=PasswordUtil.convertToSha256(password);
         

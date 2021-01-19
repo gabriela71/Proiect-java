@@ -29,7 +29,7 @@ import javax.servlet.http.Part;
         (
             value=@HttpConstraint
             (
-            rolesAllowed={"CandidateRole"}
+            rolesAllowed={"ClientRole"}
             )
         )
 @MultipartConfig

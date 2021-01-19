@@ -80,9 +80,7 @@ public class CandidateBean {
    public void DeleteCVCandidate(int candidate_id){
        LOG.info("deleteCv");
        
-       Candidate candidate=em.find(Candidate.class, candidate_id);
-       
-       int cv_id=candidate.getCv().getId();
+       Candidate candidate=em.find(Candidate.class, candidate_id);       
        CV cv=candidate.getCv();
        
        em.remove(cv);

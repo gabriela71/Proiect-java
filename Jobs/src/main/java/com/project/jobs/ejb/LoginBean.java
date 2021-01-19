@@ -5,10 +5,8 @@
  */
 package com.project.jobs.ejb;
 
-
 import com.project.jobs.entity.Login;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,21 +20,28 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class LoginBean {
 
-    private static final Logger LOG = Logger.getLogger(LoginBean.class.getName());
-    
     @PersistenceContext
     private EntityManager em;
-    
-    
-    public void createEntry (String username, String password, String rol)
-    {
+
+    public void createEntry(String username, String password, String rol) {
         Login login = new Login();
         login.setUsername(username);
         login.setPassword(password);
         login.setRol(rol);
-        
+
         em.persist(login);
     }
-    
-    
+
+    public void deleteEntryByUsername(String username) {
+        try {
+            TypedQuery<Login> typedQuery = em.createQuery("SELECT u FROM Login u WHERE u.username = :usernameLogin", Login.class).setParameter("usernameLogin", username);
+            List<Login> login = typedQuery.getResultList();
+            Login loginEntry = login.get(0);
+            em.remove(loginEntry);
+        } catch (Exception ex) {
+            throw new EJBException(ex);
+        }
+
+    }
+
 }

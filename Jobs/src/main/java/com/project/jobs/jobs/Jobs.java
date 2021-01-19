@@ -7,18 +7,15 @@ package com.project.jobs.jobs;
 
 import com.project.jobs.common.CandidateDetails;
 import com.project.jobs.common.PositionDetailss;
-import com.project.jobs.ejb.AplicantiBean;
+import com.project.jobs.ejb.ApplicantBean;
 import com.project.jobs.ejb.CandidateBean;
 import com.project.jobs.ejb.I18n;
 import com.project.jobs.ejb.PositionBean;
 import com.project.sendemail.SendEmail;
 import java.io.IOException;
 import java.util.List;
-import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +34,7 @@ public class Jobs extends HttpServlet {
     CandidateBean candidateBean;
        
     @Inject
-    AplicantiBean aplicantiBean;
+    ApplicantBean aplicantiBean;
     
     @Inject
     PositionBean positionBean;
@@ -78,7 +75,11 @@ public class Jobs extends HttpServlet {
             throws ServletException, IOException {
         
         CandidateDetails loggedCandidate=candidateBean.getLoggedUser(request.getRemoteUser());
-      
+        
+        int id_pozitie = Integer.parseInt(request.getParameter("id_pozitie"));
+        
+        aplicantiBean.createApplicant(id_pozitie, loggedCandidate.getId());
+        
         SendEmail email=new SendEmail();
         email.sendEmailApplyPosition(loggedCandidate);
         
