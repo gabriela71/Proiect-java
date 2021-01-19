@@ -76,7 +76,7 @@ public class Jobs extends HttpServlet {
         
         CandidateDetails loggedCandidate=candidateBean.getLoggedUser(request.getRemoteUser());
         
-        int id_pozitie = Integer.parseInt(request.getParameter("id_pozitie"));
+        int id_pozitie = Integer.parseInt(request.getParameter("position_id"));
         
         aplicantiBean.createApplicant(id_pozitie, loggedCandidate.getId());
         
