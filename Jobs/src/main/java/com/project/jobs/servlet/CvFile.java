@@ -5,10 +5,12 @@
  */
 package com.project.jobs.servlet;
 
+import com.project.jobs.common.AplicantDetails;
+import com.project.jobs.common.CandidateDetails;
 import com.project.jobs.common.CvDetails;
+import com.project.jobs.ejb.ApplicantBean;
 import com.project.jobs.ejb.CandidateBean;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +27,8 @@ public class CvFile extends HttpServlet {
 
     @Inject
     CandidateBean candidateBean;
+    @Inject
+    ApplicantBean applicantBean;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -38,8 +42,14 @@ public class CvFile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username=request.getParameter("id");
-        CvDetails cv = candidateBean.findCvByCandidateUsername(username);
+        
+        int id_aplicant=Integer.parseInt(request.getParameter("id"));
+        
+        AplicantDetails aplicant = applicantBean.findById(id_aplicant);
+        int id_candidat=applicantBean.getCandidateId(id_aplicant);
+        CandidateDetails candidat = candidateBean.findById(id_candidat);
+            
+        CvDetails cv = candidateBean.findCvByCandidateUsername(candidat.getUsername());
         
         if(cv!=null)
         {

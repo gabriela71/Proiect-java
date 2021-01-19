@@ -71,10 +71,7 @@
                 </div>
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Elect?id=${aplicant.id}" role="button"><fmt:message key="elect"/></a>
-                </div>
-                <div>
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Detalii?id=${aplicant.id}" role="button"><fmt:message key="details"/></a>
-                </div>
+                </div>               
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/UndoProposition?id=${aplicant.id}" role="button"><fmt:message key="undo"/></a>
                 </div>

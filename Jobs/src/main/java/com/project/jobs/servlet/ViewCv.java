@@ -37,8 +37,8 @@ public class ViewCv extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String username=request.getParameter("id");
-        request.setAttribute("username", username );
+        int id_aplicant=Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("username", id_aplicant );
         
         request.getRequestDispatcher("/WEB-INF/pages/viewCv.jsp").forward(request, response);
     }

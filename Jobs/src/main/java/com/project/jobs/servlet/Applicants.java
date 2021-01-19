@@ -9,7 +9,6 @@ import com.project.jobs.common.AplicantDetails;
 import com.project.jobs.ejb.ApplicantBean;
 import com.project.jobs.ejb.I18n;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -37,7 +36,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Applicants extends HttpServlet {
 
     @Inject
-    private ApplicantBean aplicantBean;
+    ApplicantBean aplicantBean;
      
     @Inject
     I18n i18n;
