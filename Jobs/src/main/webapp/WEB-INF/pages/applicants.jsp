@@ -6,9 +6,11 @@
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="com.project.i18n.language" />
 <t:pageTemplate pageTitle="Applicants">
-    <h1><fmt:message key="ListAplicants"/></h1>
+    <h1><fmt:message key="ListAplicants"/></h1><br>
     <form method="POST" action="${pageContext.request.contextPath}/Applicants">
         <div class="row">
+            <div class="col-md-1">
+            </div>
             <div class="col-md-1">
                 <h6><fmt:message key="surname"/></h6>
             </div>
@@ -27,7 +29,7 @@
             <div class="col-md-1">
                 <h6><fmt:message key="positionName"/></h6>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <h6><fmt:message key="positionDepartment"/></h6>
             </div>
         </div>
@@ -54,7 +56,7 @@
                 <div class="col-md-1">
                     ${aplicant.denumire} 
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     ${aplicant.departament} 
                 </div>
                 <div>

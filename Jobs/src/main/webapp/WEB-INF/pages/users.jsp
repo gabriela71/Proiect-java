@@ -7,7 +7,7 @@
  <fmt:setLocale value="${language}" />
  <fmt:setBundle basename="com.project.i18n.language" />
  <t:pageTemplate pageTitle="Users">
-     <h1><fmt:message key="dateusers"/></h1>
+     <h1><fmt:message key="dateusers"/></h1><br>
      <form method="POST" action="${pageContext.request.contextPath}/User">
          <div class="row">
             <div class="col-md-1">
@@ -28,10 +28,10 @@
             <div class="col-md-2">
                 <h6><fmt:message key="email"/></h6>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <h6><fmt:message key="positionName"/></h6>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <h6><fmt:message key="username"/></h6>
             </div>
         </div>
@@ -55,10 +55,10 @@
                 <div class="col-md-2">
                    ${user.email} 
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                    ${user.pozitie} 
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                    ${user.username} 
                 </div>
                 <div>

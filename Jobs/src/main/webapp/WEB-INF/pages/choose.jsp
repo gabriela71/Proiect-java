@@ -12,7 +12,7 @@
  <fmt:setLocale value="${language}" />
  <fmt:setBundle basename="com.project.i18n.language" />
 <t:pageTemplate pageTitle="Elected Candidate">
-    <h1><fmt:message key="Elected"/></h1>
+    <h1><fmt:message key="Elected"/></h1><br>
     <form method="POST" action="${pageContext.request.contextPath}/Choose">
       <div class="row">
                 <div class="col-md-1">
@@ -57,7 +57,7 @@
                 <div class="col-md-1">
                    ${aplicant.denumire} 
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                    ${aplicant.departament} 
                 </div>
                 <div>

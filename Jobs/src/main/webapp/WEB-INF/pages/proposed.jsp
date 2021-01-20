@@ -12,9 +12,11 @@
  <fmt:setLocale value="${language}" />
  <fmt:setBundle basename="com.project.i18n.language" />
 <t:pageTemplate pageTitle="Proposed Candidate">
-    <h1><fmt:message key="Proposed"/></h1>
+    <h1><fmt:message key="Proposed"/></h1><br>
     <form method="POST" action="${pageContext.request.contextPath}/Proposed">
        <div class="row">
+                <div class="col-md-1">
+                </div>
                 <div class="col-md-1">
                     <h6><fmt:message key="surname"/></h6>
                 </div>
@@ -36,7 +38,7 @@
                 <div class="col-md-1">
                    <h6><fmt:message key="positionDepartment"/></h6>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                    <h6><fmt:message key="dataInterviu"/></h6>
                 </div>
         </div>
@@ -66,12 +68,12 @@
                 <div class="col-md-1">
                    ${aplicant.departament} 
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                    ${aplicant.dataInterviu} 
                 </div>
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Elect?id=${aplicant.id}" role="button"><fmt:message key="elect"/></a>
-                </div>               
+                </div>
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/UndoProposition?id=${aplicant.id}" role="button"><fmt:message key="undo"/></a>
                 </div>
